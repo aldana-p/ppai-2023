@@ -64,6 +64,7 @@ namespace PPAI_IVR
             listaOpVal2.Add(opVal5);
             listaOpVal2.Add(opVal6);
 
+
             Validacion val1 = new Validacion("", "Validar fecha nacimiento", listaOpVal1, tipoInfo1);
             Validacion val2 = new Validacion("", "Validar código postal", listaOpVal2, tipoInfo2);
             List<Validacion> listaValidacion1 = new List<Validacion>();
@@ -76,7 +77,7 @@ namespace PPAI_IVR
             //Creacion subopciones
             Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjer", 1, listaValidacion1);
             Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjer", 2, listaValidacion2);
-            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion2);
+            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
             List<Subopcion> listaSubop1 = new List<Subopcion>();
             listaSubop1.Add(subop1);
             listaSubop1.Add(subop2);
@@ -110,15 +111,18 @@ namespace PPAI_IVR
             Llamada llamadaSeleccionada = new Llamada("", null, cliente1, operador, op1, subop3, listaCambiosEstado);
 
 
-
+            /*
             GestorRegistrarRtaOperador gestor = new GestorRegistrarRtaOperador(llamadaSeleccionada, cat1, this, estados);
             GestorRegistrarRtaOperador.registrarRespuestaOperador(llamadaSeleccionada, cat1, this, gestor);
+            */
+
+            // método buscarDatosLlamada() pone los datos en la pantalla. --> está mal, debería ser el método mostrar datos
+            // gestor.buscarDatosLlamada(llamadaSeleccionada);
 
 
 
-            gestor.buscarDatosLlamada(llamadaSeleccionada);
-
-
+            GestorRegistrarRtaOperador.comunicarseConOperador(llamadaSeleccionada, cat1, estados, this);
+            
 
         }
 
@@ -126,5 +130,36 @@ namespace PPAI_IVR
         private void button1_Click_1(object sender, EventArgs e)
         {
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            gbValidaciones.Visible = true;
+        }
+
+        private void btnIngresarRta1_Click(object sender, EventArgs e)
+        {
+            lblRta1.Visible = true;
+            cmbOpValidacion1.Visible = true;
+        }
+        private void btnIngresarRta2_Click(object sender, EventArgs e)
+        {
+            lblRta2.Visible = true;
+            cmbOpValidacion2.Visible = true;
+        }
+
+        private void btnIngresarRta3_Click(object sender, EventArgs e)
+        {
+            lblRta3.Visible = true;
+            cmbOpValidacion3.Visible = true;
+        }
+
+        /*
+        public void tomarRespuestas()
+        {
+            string[] respuestas = new string[3] { txtRtaValidacion1.Text, txtRtaValidacion2.Text, txtRtaValidacion3.Text };
+            
+            GestorRegistrarRtaOperador.tomarRespuesta();
+        }
+        */
     }
 }

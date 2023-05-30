@@ -19,5 +19,10 @@ namespace PPAI_IVR.Clases
             this.validacion = val;
             this.opcionCorrecta = opVal;
         }
+
+        public void esInformacionCorrecta()
+        {
+
+        }
     }
 }

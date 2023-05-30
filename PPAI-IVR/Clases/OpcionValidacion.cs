@@ -9,7 +9,7 @@ namespace PPAI_IVR.Clases
     public class OpcionValidacion
     {
         private bool correcta;
-        private string descripcion;
+        public string descripcion;
 
         public OpcionValidacion(bool correcta, string descripcion)
         {

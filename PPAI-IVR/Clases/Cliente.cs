@@ -23,5 +23,12 @@ namespace PPAI_IVR.Clases
         {
             return this.nombreCliente;
         }
+
+        /*
+        public void validarRespuestaCliente()
+        {
+            info.esInformacionCorrecta();
+        }
+        */
     }
 }

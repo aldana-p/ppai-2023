@@ -18,18 +18,13 @@ namespace PPAI_IVR.Clases
         }
 
         
-        public static Estado esEnCurso(List<Estado> estados) 
+        public bool esEnCurso() 
         {
-            Estado estadoEnCurso = null;
-            foreach (Estado estado in estados)
+            if (this.nombre == "EnCurso")
             {
-                if (estado.nombre == "EnCurso")
-                {
-                    estadoEnCurso = estado;
-                    break;
-                }
+                return true;
             }
-            return estadoEnCurso;
+            return false;
 
             /*
             List<Estado> estados = EstadoBD.obtenerEstados();    //método que conecte con la BD y que devuelva una lista de  todos los estados

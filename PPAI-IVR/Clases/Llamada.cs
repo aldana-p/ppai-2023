@@ -44,7 +44,7 @@ namespace PPAI_IVR.Clases
         {
             CambioEstado enCurso = new CambioEstado(fechaHoraActual, estado);
             cambioEstado.Add(enCurso);
-            MessageBox.Show(cambioEstado.Count.ToString());
+            //MessageBox.Show(cambioEstado.Count.ToString());
             
         }
 
@@ -53,6 +53,11 @@ namespace PPAI_IVR.Clases
             return this.cliente.getNombre();
         }
 
-
+        /*
+        public void validarRespuestaCliente()
+        {
+            cliente.validarRespuestaCliente();
+        }
+        */
     }
 }

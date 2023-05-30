@@ -11,7 +11,7 @@ namespace PPAI_IVR.Clases
     {
         public string nombre;
         public int nroOrden;
-        private List<Validacion> validacionesRequeridas;
+        public List<Validacion> validacionesRequeridas;
 
         public Subopcion(string nombre, int nroOrden, List<Validacion> validacionesRequeridas)
         {
@@ -27,6 +27,11 @@ namespace PPAI_IVR.Clases
         public string getNombre()
         {
             return nombre;
+        }
+
+        public List<Validacion> getValidacionesSubopcion()
+        {
+            return this.validacionesRequeridas;
         }
 
     }
