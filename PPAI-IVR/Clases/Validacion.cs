@@ -8,10 +8,10 @@ namespace PPAI_IVR.Clases
 {
     public class Validacion
     {
-        private string mensajeValidacion; //hace falta? es audio
-        private string nombre;
-        public List<OpcionValidacion> opcionesValidacion;
-        private TipoInformacion tipo;
+        private string mensajeValidacion { get; set; }//hace falta? es audio
+        private string nombre { get; set; }
+        public List<OpcionValidacion> opcionesValidacion { get; set; }
+        private TipoInformacion tipo { get; set; }
 
         public Validacion(string mensajeValidacion, string nombre, List<OpcionValidacion> opcionesValidacion, TipoInformacion tipo)
         {
@@ -23,7 +23,7 @@ namespace PPAI_IVR.Clases
 
         public string getValidacion()
         {
-            return this.nombre;
+            return nombre;
         }
 
     }

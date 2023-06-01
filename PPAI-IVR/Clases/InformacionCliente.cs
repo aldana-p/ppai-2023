@@ -8,21 +8,24 @@ namespace PPAI_IVR.Clases
 {
     public class InformacionCliente
     {
-        private string datoAValidar;
-        private Validacion validacion;
-        private OpcionValidacion opcionCorrecta;
-       // private TipoInformacion tipoInformacion;
+        private string datoAValidar { get; set; }
+        private Validacion validacion { get; set; }
+        private OpcionValidacion opcionCorrecta { get; set; }
+        // private TipoInformacion tipoInformacion;
 
-        public InformacionCliente(string datoAValidar, Validacion val, OpcionValidacion opVal)
+        public InformacionCliente(string datoAValidar) //, Validacion val, OpcionValidacion opVal)
         {
             this.datoAValidar = datoAValidar;
-            this.validacion = val;
-            this.opcionCorrecta = opVal;
+            //this.validacion = val;
+            //this.opcionCorrecta = opVal;
         }
+        
 
-        public void esInformacionCorrecta()
+        public bool esInformacionCorrecta(string respuesta )
         {
+            return (respuesta == datoAValidar);
 
         }
+        
     }
 }

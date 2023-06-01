@@ -8,15 +8,16 @@ namespace PPAI_IVR.Clases
 {
     public class Cliente
     {
-        private int dni;
-        private string nombreCliente;
-        private int nroTelefono;
-        private List<InformacionCliente> info;
+        private int dni { get; set; }
+        private string nombreCliente { get; set; }
+        private int nroTelefono { get; set; }
+        private List<InformacionCliente> informacion { get; set; }
 
-        public Cliente(int dni, string nombre)
+        public Cliente(int dni, string nombre, List<InformacionCliente> infoCliente)
         {
             this.dni = dni;
-            this.nombreCliente = nombre;    
+            this.nombreCliente = nombre;
+            this.informacion = infoCliente;
         }
 
         public string getNombre()
@@ -24,11 +25,24 @@ namespace PPAI_IVR.Clases
             return this.nombreCliente;
         }
 
-        /*
-        public void validarRespuestaCliente()
+        
+        public bool validarRespuestaCliente(string respuesta)
         {
-            info.esInformacionCorrecta();
+            int contador = 0;
+            foreach (InformacionCliente info in informacion)
+            {
+                if (info.esInformacionCorrecta(respuesta))
+                {
+                    contador++;
+                };
+            }
+
+            if (contador == 1)
+            {
+                return true;
+            }
+            return false;
         }
-        */
+        
     }
 }

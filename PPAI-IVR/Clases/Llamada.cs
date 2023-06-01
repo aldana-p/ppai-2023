@@ -10,9 +10,9 @@ namespace PPAI_IVR.Clases
 {
     public class Llamada
     {
-        private string descripcionOperador { get; set; }
+        public string descripcionOperador { get; set; }
         private string detalleAccionRequerida { get; set; }
-        private int duracion { get; set; } // en cantidad de minutos por ejemplo?
+        public TimeSpan duracion { get; set; } 
         private bool encuestaEnviada { get; set; } // revisar si es bool
         private string observacionAuditor { get; set; }
         private Accion accionRequerida { get; set; }
@@ -42,9 +42,11 @@ namespace PPAI_IVR.Clases
 
         public void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado)
         {
-            CambioEstado enCurso = new CambioEstado(fechaHoraActual, estado);
-            cambioEstado.Add(enCurso);
-            //MessageBox.Show(cambioEstado.Count.ToString());
+            //CambioEstado enCurso = new CambioEstado(fechaHoraActual, estado);      
+            //Si lo llamao "enCurso" voy a tener que repetir el método para cuando sea "finalizada"
+            //FALTA PROBARRRR !!!!!!!!!!!!!!!!!!!!!!!!!!
+            CambioEstado nuevoEstado = new CambioEstado(fechaHoraActual, estado);
+            cambioEstado.Add(nuevoEstado);
             
         }
 
@@ -53,11 +55,30 @@ namespace PPAI_IVR.Clases
             return this.cliente.getNombre();
         }
 
-        /*
-        public void validarRespuestaCliente()
+        
+        public bool validarRespuesta(string respuesta)
         {
-            cliente.validarRespuestaCliente();
+            return cliente.validarRespuestaCliente(respuesta);
         }
-        */
+
+
+
+
+        public void finalizarLlamada(DateTime fechaHoraActual, Estado estado)
+        {
+            crearNuevoCambioEstado(fechaHoraActual, estado);
+        }
+
+        public void setDescripcionOperador(string descripcion)
+        {
+            descripcionOperador = descripcion;
+        }
+
+        public void calcularDuracion(DateTime horaInicio, DateTime horaFin)
+        {
+            duracion = horaFin.Subtract(horaInicio);
+        }
+
+
     }
 }

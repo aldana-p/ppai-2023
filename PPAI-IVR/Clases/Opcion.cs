@@ -8,11 +8,11 @@ namespace PPAI_IVR.Clases
 {
     public class Opcion
     {
-        private string mensajeSubopciones;
-        private string nombre;
-        private int nroOrden;
-        private List<Subopcion> subopcion;
-        private List<Validacion> validacionesRequeridas;
+        private string mensajeSubopciones { get; set; }
+        private string nombre { get; set; }
+        private int nroOrden { get; set; }
+        public List<Subopcion> subopcion { get; set; }
+        private List<Validacion> validacionesRequeridas { get; set; }
 
         public Opcion(string nombre, int nroOrden, List<Subopcion> subopciones)
         {

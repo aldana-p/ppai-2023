@@ -1,11 +1,12 @@
-﻿using PPAI_IVR.Base_de_datos;
-using PPAI_IVR.Clases;
+﻿using PPAI_IVR.Clases;
+using PPAI_IVR.Pantalla;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,124 +15,18 @@ namespace PPAI_IVR
 {
     public partial class PantallaRegistrarRtaOperador : Form
     {
-        public PantallaRegistrarRtaOperador()
+        public GestorRegistrarRtaOperador gestor;
+        public PantallaRegistrarRtaOperador(GestorRegistrarRtaOperador gestor)
         {
+            this.gestor = gestor;
             InitializeComponent();
-            
         }
 
         private void PantallaRegistrarRtaOperador_Load(object sender, EventArgs e)
-        { //Creacion estados
-            Estado estadoIniciada = new Estado("Iniciada");
-            Estado estadoEnCurso = new Estado("EnCurso");
-            Estado estadoFinalizada = new Estado("Finalizada");
-            Estado estadoCancelada = new Estado("Cancelada");
-            List<Estado> estados = new List<Estado>();
-            estados.Add(estadoIniciada);
-            estados.Add(estadoEnCurso);
-            estados.Add(estadoFinalizada);
-            estados.Add(estadoCancelada);
-
-
-
-            //Creacion Clientes
-            Cliente cliente1 = new Cliente(123123, "Aldana");
-            Cliente cliente2 = new Cliente(456456, "Virginia");
-
-
-            //Crear Acciones
-            Accion accion = new Accion("Anular tarjera");
-
-            //Crear tipos informacion
-            TipoInformacion tipoInfo1 = new TipoInformacion("fechaNacimiento");
-            TipoInformacion tipoInfo2 = new TipoInformacion("codPostal");
-            TipoInformacion tipoInfo3 = new TipoInformacion("cantidadHijos");
-
-            //Opciones Validacion
-            OpcionValidacion opVal1 = new OpcionValidacion(true, "3/10/89");
-            OpcionValidacion opVal2 = new OpcionValidacion(false, "12/5/89");
-            OpcionValidacion opVal3 = new OpcionValidacion(false, "5/8/89");
-            List<OpcionValidacion> listaOpVal1 = new List<OpcionValidacion>();
-            listaOpVal1.Add(opVal1);
-            listaOpVal1.Add(opVal2);
-            listaOpVal1.Add(opVal3);
-
-            OpcionValidacion opVal4 = new OpcionValidacion(true, "5012");
-            OpcionValidacion opVal5 = new OpcionValidacion(false, "5000");
-            OpcionValidacion opVal6 = new OpcionValidacion(false, "5011");
-            List<OpcionValidacion> listaOpVal2 = new List<OpcionValidacion>();
-            listaOpVal2.Add(opVal4);
-            listaOpVal2.Add(opVal5);
-            listaOpVal2.Add(opVal6);
-
-
-            Validacion val1 = new Validacion("", "Validar fecha nacimiento", listaOpVal1, tipoInfo1);
-            Validacion val2 = new Validacion("", "Validar código postal", listaOpVal2, tipoInfo2);
-            List<Validacion> listaValidacion1 = new List<Validacion>();
-            listaValidacion1.Add(val1);
-            listaValidacion1.Add(val2);
-
-            List<Validacion> listaValidacion2 = new List<Validacion>();
-            listaValidacion2.Add(val1);
-
-            //Creacion subopciones
-            Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjer", 1, listaValidacion1);
-            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjer", 2, listaValidacion2);
-            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
-            List<Subopcion> listaSubop1 = new List<Subopcion>();
-            listaSubop1.Add(subop1);
-            listaSubop1.Add(subop2);
-            listaSubop1.Add(subop3);
-
-            //Creacion opciones
-            Opcion op1 = new Opcion("Informar robo y solicitar nueva tarjeta", 1, listaSubop1);
-            Opcion op2 = new Opcion("Informar robo y anular tarjeta", 2, listaSubop1);
-            Opcion op3 = new Opcion("Finalizar llamada", 3, listaSubop1);
-            List<Opcion> listaOp1 = new List<Opcion>();
-            listaOp1.Add(op1);
-            listaOp1.Add(op2);
-            listaOp1.Add(op3);
-
-            //Creacion categorias
-            Categoria cat1 = new Categoria("Informar robo", 1, listaOp1);
-            Categoria cat2 = new Categoria("Tarjeta bloqueada", 2, listaOp1);
-
-
-            //Creacion Cambios Estado
-            CambioEstado ce1 = new CambioEstado(DateTime.Now, estadoIniciada);
-
-            List<CambioEstado> listaCambiosEstado = new List<CambioEstado>();
-            listaCambiosEstado.Add(ce1);
-
-
-            Usuario operador = new Usuario("NombreOperador");
-
-            //Creacion LLamada
-
-            Llamada llamadaSeleccionada = new Llamada("", null, cliente1, operador, op1, subop3, listaCambiosEstado);
-
-
-            /*
-            GestorRegistrarRtaOperador gestor = new GestorRegistrarRtaOperador(llamadaSeleccionada, cat1, this, estados);
-            GestorRegistrarRtaOperador.registrarRespuestaOperador(llamadaSeleccionada, cat1, this, gestor);
-            */
-
-            // método buscarDatosLlamada() pone los datos en la pantalla. --> está mal, debería ser el método mostrar datos
-            // gestor.buscarDatosLlamada(llamadaSeleccionada);
-
-
-
-            GestorRegistrarRtaOperador.comunicarseConOperador(llamadaSeleccionada, cat1, estados, this);
-            
-
-        }
-
-
-        private void button1_Click_1(object sender, EventArgs e)
         {
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void mostrarValidaciones_Click(object sender, EventArgs e)
         {
             gbValidaciones.Visible = true;
         }
@@ -139,27 +34,131 @@ namespace PPAI_IVR
         private void btnIngresarRta1_Click(object sender, EventArgs e)
         {
             lblRta1.Visible = true;
-            cmbOpValidacion1.Visible = true;
+            txtRtaValidacion1.Visible = true;
         }
         private void btnIngresarRta2_Click(object sender, EventArgs e)
         {
             lblRta2.Visible = true;
-            cmbOpValidacion2.Visible = true;
+            txtRtaValidacion2.Visible = true;
         }
 
         private void btnIngresarRta3_Click(object sender, EventArgs e)
         {
             lblRta3.Visible = true;
-            cmbOpValidacion3.Visible = true;
+            txtRtaValidacion3.Visible = true;
         }
 
-        /*
-        public void tomarRespuestas()
+        public void mostrarDatosLlamada(string[] categoriaOpcionSubopcion, string nombreCliente, Llamada selecLlamada)
         {
-            string[] respuestas = new string[3] { txtRtaValidacion1.Text, txtRtaValidacion2.Text, txtRtaValidacion3.Text };
-            
-            GestorRegistrarRtaOperador.tomarRespuesta();
+            txtNombreCliente.Text = nombreCliente;
+
+            cmbCategoria.Text = categoriaOpcionSubopcion[0];
+            cmbOpcion.Text = categoriaOpcionSubopcion[1];
+            cmbSubopcion.Text = categoriaOpcionSubopcion[2];
+
+            //Pruebas para ver que efectivamente se creo el nuevo CambioEstado
+            List<CambioEstado> lista = selecLlamada.cambioEstado;
+            label10.Text = lista.Count.ToString();
+            label8.Text = lista[0].estado.nombre;
+            label9.Text = lista[1].estado.nombre;
         }
-        */
+
+        public void mostrarDatosValidaciones(List<string> nombresValidaciones)
+        {
+            //MEJORAR ? 
+            int cantidadValidaciones = nombresValidaciones.Count;
+            if (cantidadValidaciones == 0)
+            {
+                gbValidaciones.Visible = false;
+            }
+            else
+            {
+                if (cantidadValidaciones == 1)
+                {
+                    gbValidacion1.Visible = true;
+                    gbValidacion2.Visible = false;
+                    gbValidacion3.Visible = false;
+
+                    txtValidacion1.Text = nombresValidaciones[0];
+
+                }
+                else
+                {
+                    if (cantidadValidaciones == 2)
+                    {
+                        gbValidacion1.Visible = true;
+                        gbValidacion2.Visible = true;
+                        gbValidacion3.Visible = false;
+
+                        txtValidacion1.Text = nombresValidaciones[0];
+                        txtValidacion1.Text = nombresValidaciones[1];
+
+                    }
+                    else
+                    {
+                        if (cantidadValidaciones == 3)
+                        {
+                            gbValidacion1.Visible = true;
+                            gbValidacion2.Visible = true;
+                            gbValidacion3.Visible = true;
+
+                            txtValidacion1.Text = nombresValidaciones[0];
+                            txtValidacion1.Text = nombresValidaciones[1];
+                            txtValidacion1.Text = nombresValidaciones[2];
+
+                        }
+                    }
+                }
+            }
+        }
+
+        private void tomarRespuestas(object sender, EventArgs e)
+        {
+            string[] respuestas = new string[0];
+            if (gbValidaciones.Visible == true)
+            {
+                if (gbValidacion1.Visible == true && gbValidacion2.Visible == false && gbValidacion3.Visible == false)
+                {
+                    respuestas = new string[1] { txtRtaValidacion1.Text };
+                }
+                if (gbValidacion1.Visible == true && gbValidacion2.Visible == true && gbValidacion3.Visible == false)
+                {
+                    respuestas = new string[2] { txtRtaValidacion1.Text, txtRtaValidacion2.Text };
+                }
+                if (gbValidacion1.Visible == true && gbValidacion2.Visible == true && gbValidacion3.Visible == true)
+                {
+                    respuestas = new string[3] { txtRtaValidacion1.Text, txtRtaValidacion2.Text, txtRtaValidacion3.Text };
+                }
+
+            }
+
+
+            bool res = gestor.tomarRespuestasValidaciones(respuestas);
+            if (res)
+            {
+                MessageBox.Show("Validaciones correctas");
+                DialogResult result = MessageBox.Show("Las respuestas ingresadas son correctas... ¿Desea continuar?", "InformaciónCorrecta", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    gestor.segundaPantalla.Show();
+                    this.Hide();
+                }
+                else if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                // Corregir condiciones (si los txt estaban vacíos por ejemplo)
+                MessageBox.Show("Validaciones incorrectas");
+            }
+
+        }
+
+      
+
+       
     }
 }

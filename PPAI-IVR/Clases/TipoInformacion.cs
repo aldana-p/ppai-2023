@@ -8,8 +8,8 @@ namespace PPAI_IVR.Clases
 {
     public class TipoInformacion
     {
-        private string descripcion;
-    
+        private string descripcion { get; set; }
+
         public TipoInformacion(string descripcion)
         {
             this.descripcion = descripcion;

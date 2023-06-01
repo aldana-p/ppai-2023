@@ -20,3 +20,4 @@ F:\GitHub-\ppai-2023\PPAI-IVR\obj\Debug\PPAI-IVR.csproj.GenerateResource.cache
 F:\GitHub-\ppai-2023\PPAI-IVR\obj\Debug\PPAI-IVR.csproj.CoreCompileInputs.cache
 F:\GitHub-\ppai-2023\PPAI-IVR\obj\Debug\PPAI-IVR.exe
 F:\GitHub-\ppai-2023\PPAI-IVR\obj\Debug\PPAI-IVR.pdb
+F:\GitHub-\ppai-2023\PPAI-IVR\obj\Debug\PPAI_IVR.Pantalla.SegundaPantalla.resources

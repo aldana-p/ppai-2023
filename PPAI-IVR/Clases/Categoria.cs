@@ -8,10 +8,10 @@ namespace PPAI_IVR.Clases
 {
     public class Categoria
     {
-        private string mensajeOpciones;
-        private string nombre;
-        private int nroOrden;
-        private List<Opcion> opcion;
+        private string mensajeOpciones { get; set; }
+        private string nombre { get; set; }
+        private int nroOrden { get; set; }
+        private List<Opcion> opcion { get; set; }
 
         public Categoria(string nombre, int nroOrden, List<Opcion> opciones)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PPAI_IVR.Pantalla;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,47 +11,43 @@ namespace PPAI_IVR.Clases
 {
     public class GestorRegistrarRtaOperador
     {
-        private Llamada llamada;
-        private Opcion opcion;
-        private Categoria categoria;
-        private Subopcion subopcion;
-        private Cliente cliente;
-        private Estado estadoEnCurso;
-        private List<Estado> estados;  
-        private DateTime fechaHoraActual;
-        private PantallaRegistrarRtaOperador pantalla;
-        
+        private Llamada llamada { get; set; }
+        private Opcion opcion { get; set; }
+        private Categoria categoria { get; set; }
+        private Subopcion subopcion { get; set; }
+        private Cliente cliente { get; set; }
+        private Estado estadoEnCurso { get; set; }
+        private Estado estadoFinalizada { get; set; }
+        private List<Estado> estados { get; set; }
+        private DateTime fechaHoraActual { get; set; }
+        public PantallaRegistrarRtaOperador pantalla { get; set; }
+        private List<Accion> acciones { get; set; }
+        private string respuestaOperador { get; set; }
+        private string accionSeleccionada { get; set; }
+        public SegundaPantalla segundaPantalla { get; set; }
 
-        public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, PantallaRegistrarRtaOperador pantalla) //Traigo los estados para poder buscar el que necesito después (VER CÓMO RESOLVER SINO)
 
+        public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones) 
         {
             this.llamada = llamada;
             this.opcion = llamada.opcionSeleccionada;
             this.categoria = categoria;
             this.subopcion = llamada.subopcionSeleccionada;
             this.cliente = llamada.cliente;
-            this.pantalla = pantalla;
+            this.pantalla = new PantallaRegistrarRtaOperador(this);
             this.estados = estados;
-
-
+            this.acciones = acciones;
+            this.segundaPantalla = new SegundaPantalla(this);
         }
-        /*
-        // Método que tiene como parámetro la llamada, la categoría, la oción y a subopción seleccionada.
-        public static void registrarRespuestaOperador(Llamada llamadaSeleccionada, Categoria categoria, PantallaRegistrarRtaOperador pantalla, GestorRegistrarRtaOperador gestor)        {
-            //El gestor tiene la llamada seleccionada, la opcion seleccionada, la subopcion seleccionada y la categoria seleccionada
-            
-            //GestorRegistrarRtaOperador gestor = new GestorRegistrarRtaOperador(llamadaSeleccionada, categoria, pantalla);
-            gestor.identificarOpcion(llamadaSeleccionada);
-        }
-        */
-
-        public static void comunicarseConOperador(Llamada llamada, Categoria categoria, List<Estado> estados, PantallaRegistrarRtaOperador pantalla)
+        public GestorRegistrarRtaOperador(Llamada llamada)
         {
-            GestorRegistrarRtaOperador gestor = new GestorRegistrarRtaOperador(llamada, categoria, estados, pantalla);
-            //gestor.buscarDatosLlamada(llamada);
+            this.llamada = llamada;
+        }
 
-            gestor.identificarOpcion(llamada);
 
+        public void comunicarseConOperador()
+        {
+            identificarOpcion(llamada);
         }
 
         public void identificarOpcion(Llamada llamada) { 
@@ -60,7 +57,7 @@ namespace PPAI_IVR.Clases
             }
         }
 
-        // No funciona la creación del cambio de estado
+        // Método que busca el estado EnCurso para luego crear el cambio de estado.
         public void buscarEstadoEnCurso()
         {
             foreach (Estado estado in estados)
@@ -74,24 +71,23 @@ namespace PPAI_IVR.Clases
                 }
             }
 
-            obtenerFechaHoraActual();
+            fechaHoraActual = obtenerFechaHoraActual();
+            actualizarEstadoLlamadaAEnCurso(estadoEnCurso);
 
         }
 
-        public void obtenerFechaHoraActual()
+        public DateTime obtenerFechaHoraActual()
         {
-            fechaHoraActual = DateTime.Now;
-            actualizarEstadoLlamada(estadoEnCurso);
+            return DateTime.Now;
 
         }
 
-        public void actualizarEstadoLlamada(Estado nuevoEstado)
+        public void actualizarEstadoLlamadaAEnCurso(Estado nuevoEstado)
         {
             llamada.contestarLlamada(fechaHoraActual, nuevoEstado);
             buscarDatosLlamada(llamada);
 
         }
-
 
         // Método que obtiene el nombre de la categoría, opción y subopción seleccionadas.
         public void buscarDatosLlamada(Llamada seleccionadaLlamada)
@@ -101,148 +97,131 @@ namespace PPAI_IVR.Clases
 
             buscarValidaciones();
 
-            mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
+            pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
         }
-
 
         // Método que busca los nombres de las validaciones a realizar
         public void buscarValidaciones()
         {
             List<Validacion> validacionesRequeridas = subopcion.getValidacionesSubopcion();
-            List<string> nombresValidaciones = new List<string>();
+            List<string> nombresValidaciones = new List<string>(); // hago la lista con los nombres para cumplir con el diag. de secuencia (tiene el método a
+            //Validacion getValidacion().
             for (int i = 0; i < validacionesRequeridas.Count; i++)
             {
                 nombresValidaciones.Add(validacionesRequeridas[i].getValidacion());
                 
             };
 
-            /*A mostrar datos también le voy a tener que pasar los objetos Validacion porque necesito las opciones
-            (podría haber buscando entonces sólo los objetos, pero si hago eso no cumplo con el diagrama de secuncia,
-            que tiene el método getValidacion() en Validacion    --------> ver si se puede resolver de otra manera
-            */
+            pantalla.mostrarDatosValidaciones(nombresValidaciones);
 
-            mostrarDatosValidaciones(nombresValidaciones, validacionesRequeridas);
         }
 
-        // Método que muestra los datos de la llamada en la pantalla
-        public void mostrarDatosLlamada(string[] categoriaOpcionSubopcion, string nombreCliente, Llamada selecLlamada)
+        
+        //METODOS DEL LOOP PARA CADA RESPUESTA
+
+        public bool tomarRespuestasValidaciones(string[] respuestas)
         {
-            pantalla.txtNombreCliente.Text = nombreCliente;
-
-            pantalla.cmbCategoria.SelectedText = categoriaOpcionSubopcion[0];
-            pantalla.cmbOpcion.SelectedText = categoriaOpcionSubopcion[1];
-            pantalla.cmbSubopcion.SelectedText = categoriaOpcionSubopcion[2];
-
-            List<CambioEstado> lista = selecLlamada.cambioEstado;
-
-            //Pruebas para ver que efectivamente se creo el nuevo CambioEstado
-            pantalla.label10.Text = lista.Count.ToString();
-            pantalla.label8.Text = lista[0].estado.nombre;
-            pantalla.label9.Text = estadoEnCurso.nombre;
+            return validarRespuestas(respuestas);
         }
 
-        //Método que muestra los nombres de las validaciones a realizar (ver si hay otra forma de hacerlo sin anidar los if-else)
-        public void mostrarDatosValidaciones(List<string> nombresValidaciones, List<Validacion> validaciones)
+        public bool validarRespuestas(string[] respuestas)
         {
-            int cantidadValidaciones = nombresValidaciones.Count;
-            if (cantidadValidaciones == 0)
+            int contador = 0;
+            foreach (string res in respuestas)
             {
-                pantalla.gbValidaciones.Visible = false;
+                if (llamada.validarRespuesta(res))
+                {
+                    contador++;
+                };
             }
-            else
+            if (contador == respuestas.Length)
             {
-                if (cantidadValidaciones == 1)
+                return true;
+            }
+            return false;
+        }
+        
+        public void tomarRespuestaOperador(string respuestaOperador)
+        {
+            this.respuestaOperador = respuestaOperador;
+        }
+
+
+
+        
+        public List<string> buscarAcciones()
+        {
+            List<string> nombresAcciones = new List<string>();
+            foreach (Accion accion in this.acciones)
+            {
+                nombresAcciones.Add(accion.getDescripcion());  //Hago una lista con los nombre de las acciones para cumplir con el diagrama de secuencia 
+                // que tiene el método a Accion getDescrpcion().
+            }
+            return nombresAcciones;
+        }
+
+
+        public void tomarSeleccionAccion(string accion)
+        {
+            this.accionSeleccionada = accion;  // El caso de uso 28 se encarga de registrarla (asignarla a la llamada?)
+            segundaPantalla.solicitarConfirmacion();
+
+        }
+
+        public void tomarConfirmacion(bool confirmacion)
+        {
+            if (llamarCU28RegistrarAccion())
+            {
+                buscarEstadoFinalizada();
+            };
+        }
+
+        public bool llamarCU28RegistrarAccion()
+        {
+            MessageBox.Show("¡El CU28 se ejecutó con éxito!");
+            return true;    // RESOLVER ALTERNATIVA A3 !!!!!!
+
+        }
+
+        public void buscarEstadoFinalizada()
+        {
+            foreach (Estado estado in estados)
+            {
+                bool res = estado.esFinalizada();
+                if (res)
                 {
-                    pantalla.gbValidacion1.Visible = true;
-                    pantalla.gbValidacion2.Visible = false;
-                    pantalla.gbValidacion3.Visible = false;
-
-                    List<OpcionValidacion> opcionesValidacion = validaciones.ElementAt(0).opcionesValidacion;
-                    pantalla.txtValidacion1.Text = nombresValidaciones.ElementAt(0);
-                    pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion.ElementAt(0).descripcion);
-                    pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion.ElementAt(1).descripcion);
-                    pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion.ElementAt(2).descripcion);
-
-                }
-                else
-                {
-                    if (cantidadValidaciones == 2)
-                    {
-                        pantalla.gbValidacion1.Visible = true;
-                        pantalla.gbValidacion2.Visible = true;
-                        pantalla.gbValidacion3.Visible = false;
-
-                        List<OpcionValidacion> opcionesValidacion1 = validaciones.ElementAt(0).opcionesValidacion;
-                        pantalla.txtValidacion1.Text = nombresValidaciones.ElementAt(0);
-                        pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion1.ElementAt(0).descripcion);
-                        pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion1.ElementAt(1).descripcion);
-                        pantalla.cmbOpValidacion1.Items.Add(opcionesValidacion1.ElementAt(2).descripcion);
-
-                        List<OpcionValidacion> opcionesValidacion2= validaciones.ElementAt(1).opcionesValidacion;
-                        pantalla.txtValidacion2.Text = nombresValidaciones.ElementAt(1);
-                        pantalla.cmbOpValidacion2.Items.Add(opcionesValidacion2.ElementAt(0).descripcion);
-                        pantalla.cmbOpValidacion2.Items.Add(opcionesValidacion2.ElementAt(1).descripcion);
-                        pantalla.cmbOpValidacion2.Items.Add(opcionesValidacion2.ElementAt(2).descripcion);
-
-                    }
-                    else
-                    {
-                        if (cantidadValidaciones == 3)
-                        {
-                            pantalla.gbValidacion1.Visible = true;
-                            pantalla.gbValidacion2.Visible = true;
-                            pantalla.gbValidacion3.Visible = true;
-                            pantalla.txtValidacion1.Text = nombresValidaciones.ElementAt(0);
-                            pantalla.txtValidacion2.Text = nombresValidaciones.ElementAt(1);
-                            pantalla.txtValidacion3.Text = nombresValidaciones.ElementAt(2);
-                        }
-                    }
+                    estadoFinalizada = estado;
+                    break;
                 }
             }
+
+            fechaHoraActual = obtenerFechaHoraActual();
+            actualizarEstadoLlamadaFinalizada(estadoFinalizada);
         }
 
-        /*
-        public void tomarRespuestas()
+        public void actualizarEstadoLlamadaFinalizada(Estado nuevoEstado)
         {
-            validarRespuestas();
-        } 
+            llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
+            llamada.setDescripcionOperador(respuestaOperador);
 
-        
-        public void validarRespuestas()
-        {
-            llamada.validarRespuestaCliente();
-        }
-        */
+            CambioEstado primero = llamada.cambioEstado.ElementAt(0);
 
+            CambioEstado ultimo = llamada.cambioEstado.ElementAt(llamada.cambioEstado.Count - 1 );
+            llamada.calcularDuracion(primero.fechaHoraInicio, ultimo.fechaHoraInicio);
 
-      
-
-
-
-
-        /*
-
-
-        public static Estado buscarEstadoParaAsignar(Llamada seleccionada)
-        {
-            Estado estado = Estado.esEnCurso();
-            // Tengo que crear el CambioDeEstado asignandole el objeto estado
-            DateTime fechaHoraActual = obtenerFechaHoraActual();
-            seleccionada.contestar(fechaHoraActual, );
-            
-
+            // Prueba para ver el seteo de la descripcion y la duracion de la llamada
+            MessageBox.Show("Descripcion operador:" + llamada.descripcionOperador + "  Duración:" + llamada.duracion.ToString("hh':'mm':'ss"));
+            finCU();
         }
 
-        
-        
-        public void crearCambioEstado(DateTime fechaHoraActual, Estado estado, Llamada llamada)
+        public void finCU()
         {
-            //contestar() o pasarConOperador())
-            llamada.contestar(fechaHoraActual, estado);
+            pantalla.Close();
+            segundaPantalla.Close();
         }
 
-        
 
-        */
+
+
     }
 }

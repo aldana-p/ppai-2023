@@ -47,8 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base de datos\CambioEstadoBD.cs" />
-    <Compile Include="Base de datos\EstadoBD.cs" />
     <Compile Include="Clases\Accion.cs" />
     <Compile Include="Clases\CambioEstado.cs" />
     <Compile Include="Clases\Categoria.cs" />
@@ -63,16 +61,26 @@
     <Compile Include="Clases\TipoInformacion.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\Validacion.cs" />
+    <Compile Include="Datos\DatosCreados.cs" />
     <Compile Include="Pantalla\PantallaRegistrarRtaOperador.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pantalla\PantallaRegistrarRtaOperador.Designer.cs">
       <DependentUpon>PantallaRegistrarRtaOperador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantalla\SegundaPantalla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantalla\SegundaPantalla.Designer.cs">
+      <DependentUpon>SegundaPantalla.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Pantalla\PantallaRegistrarRtaOperador.resx">
       <DependentUpon>PantallaRegistrarRtaOperador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantalla\SegundaPantalla.resx">
+      <DependentUpon>SegundaPantalla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

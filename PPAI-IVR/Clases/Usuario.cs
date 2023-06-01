@@ -8,7 +8,7 @@ namespace PPAI_IVR.Clases
 {
     public class Usuario
     {
-        private string nombreUsuario;
+        private string nombreUsuario { get; set; }
 
         public Usuario(string nombreUsuario)
         {
