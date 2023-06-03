@@ -58,9 +58,6 @@ namespace PPAI_IVR.Clases
             return cliente.validarRespuestaCliente(respuesta);
         }
 
-
-
-
         public void finalizarLlamada(DateTime fechaHoraActual, Estado estado)
         {
             crearNuevoCambioEstado(fechaHoraActual, estado);
@@ -76,6 +73,10 @@ namespace PPAI_IVR.Clases
             duracion = horaFin.Subtract(horaInicio);
         }
 
+        public void cancelarLlamada (DateTime fechaHoraActual, Estado estado)
+        {
+            crearNuevoCambioEstado(fechaHoraActual, estado);
+        }
 
     }
 }
