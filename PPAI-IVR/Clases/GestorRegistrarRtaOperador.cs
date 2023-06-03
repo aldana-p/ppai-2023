@@ -1,5 +1,4 @@
-﻿using PPAI_IVR.Pantalla;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -25,7 +24,6 @@ namespace PPAI_IVR.Clases
         private List<Accion> acciones { get; set; }
         private string respuestaOperador { get; set; }
         private string accionSeleccionada { get; set; }
-        public SegundaPantalla segundaPantalla { get; set; }
 
 
         public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones) 
@@ -38,7 +36,6 @@ namespace PPAI_IVR.Clases
             this.pantalla = new PantallaRegistrarRtaOperador(this);
             this.estados = estados;
             this.acciones = acciones;
-            this.segundaPantalla = new SegundaPantalla(this);
         }
         public GestorRegistrarRtaOperador(Llamada llamada)
         {
@@ -158,7 +155,7 @@ namespace PPAI_IVR.Clases
         public void tomarSeleccionAccion(string accion)
         {
             this.accionSeleccionada = accion;  // El caso de uso 28 se encarga de registrarla (asignarla a la llamada)
-            segundaPantalla.solicitarConfirmacion();
+            pantalla.solicitarConfirmacion();
 
         }
 
@@ -217,7 +214,6 @@ namespace PPAI_IVR.Clases
         public void finCU()
         {
             pantalla.Close();
-            segundaPantalla.Close();
         }
 
 

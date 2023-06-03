@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PPAI_IVR.Datos;
-using PPAI_IVR.Pantalla;
 using System.Reflection.Emit;
 
 namespace PPAI_IVR
