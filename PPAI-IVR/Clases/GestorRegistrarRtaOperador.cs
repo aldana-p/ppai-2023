@@ -18,6 +18,7 @@ namespace PPAI_IVR.Clases
         private Cliente cliente { get; set; }
         private Estado estadoEnCurso { get; set; }
         private Estado estadoFinalizada { get; set; }
+        private Estado estadoCancelado { get; set; }
         private List<Estado> estados { get; set; }
         private DateTime fechaHoraActual { get; set; }
         public PantallaRegistrarRtaOperador pantalla { get; set; }
@@ -26,7 +27,7 @@ namespace PPAI_IVR.Clases
         private string accionSeleccionada { get; set; }
 
 
-        public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones) 
+        public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones)
         {
             this.llamada = llamada;
             this.opcion = llamada.opcionSeleccionada;
@@ -47,7 +48,8 @@ namespace PPAI_IVR.Clases
             identificarOpcion(llamada);
         }
 
-        public void identificarOpcion(Llamada llamada) { 
+        public void identificarOpcion(Llamada llamada)
+        {
             if (subopcion.nombre == "Comunicarse con responsable de atención al cliente")
             {
                 buscarEstadoEnCurso();
@@ -60,7 +62,7 @@ namespace PPAI_IVR.Clases
             foreach (Estado estado in estados)
             {
                 bool res = estado.esEnCurso();
-                
+
                 if (res)
                 {
                     estadoEnCurso = estado;
@@ -105,14 +107,14 @@ namespace PPAI_IVR.Clases
             for (int i = 0; i < validacionesRequeridas.Count; i++)
             {
                 nombresValidaciones.Add(validacionesRequeridas[i].getValidacion());
-                
+
             };
 
             pantalla.mostrarDatosValidaciones(nombresValidaciones);
 
         }
 
-        
+
         //MÉTODOS DEL LOOP PARA CADA RESPUESTA
         public bool tomarRespuestasValidaciones(string[] respuestas)
         {
@@ -135,12 +137,12 @@ namespace PPAI_IVR.Clases
             }
             return false;
         }
-        
+
         public void tomarRespuestaOperador(string respuestaOperador)
         {
             this.respuestaOperador = respuestaOperador;
         }
-                
+
         public List<string> buscarAcciones()
         {
             List<string> nombresAcciones = new List<string>();
@@ -197,7 +199,7 @@ namespace PPAI_IVR.Clases
 
             CambioEstado primero = llamada.cambioEstado.ElementAt(0);
 
-            CambioEstado ultimo = llamada.cambioEstado.ElementAt(llamada.cambioEstado.Count - 1 );
+            CambioEstado ultimo = llamada.cambioEstado.ElementAt(llamada.cambioEstado.Count - 1);
             llamada.calcularDuracion(primero.fechaHoraInicio, ultimo.fechaHoraInicio);
 
 
@@ -207,10 +209,40 @@ namespace PPAI_IVR.Clases
                 "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
                 "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
 
-           Console.WriteLine(" Descripción operador: " + llamada.descripcionOperador +
-                              "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
-                                             "\n Cantidad de cambios de estados: " + lista.Count.ToString());
+            Console.WriteLine(" Descripción operador: " + llamada.descripcionOperador +
+                               "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
+                                              "\n Cantidad de cambios de estados: " + lista.Count.ToString());
             finCU();
+        }
+
+        public void buscarEstadoCancelado()
+        {
+            foreach (Estado estado in estados)
+            {
+                bool res = estado.esCancelado();
+                if (res)
+                {
+                    estadoCancelado = estado;
+                    break;
+                }
+            }
+        }
+
+        public void actualizarEstadoLlamadaACancelado(Estado nuevoEstado)
+        {
+            llamada.cancelarLlamada(fechaHoraActual, nuevoEstado);
+            llamada.setDescripcionOperador(respuestaOperador);
+        }
+
+        public void cancelarLlamada()
+        {
+            buscarEstadoCancelado();
+            fechaHoraActual = obtenerFechaHoraActual();
+            actualizarEstadoLlamadaACancelado(estadoCancelado);
+            List<CambioEstado> lista = llamada.cambioEstado;
+            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].estado.nombre);
+                          
+
         }
 
         public void finCU()
@@ -218,8 +250,8 @@ namespace PPAI_IVR.Clases
             pantalla.Close();
         }
 
+       
 
-
-
+        
     }
 }

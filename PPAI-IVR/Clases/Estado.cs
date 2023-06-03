@@ -35,5 +35,15 @@ namespace PPAI_IVR.Clases
             return false;
         }
 
+        public bool esCancelado()
+        {
+            if (this.nombre == "Cancelado")
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

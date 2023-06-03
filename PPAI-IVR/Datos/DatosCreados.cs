@@ -18,8 +18,6 @@ namespace PPAI_IVR.Datos
         public List<CambioEstado> cambiosEstado;
         public Usuario operador;
 
-
-
         public DatosCreados()
         {
             //Crear acciones
@@ -37,7 +35,7 @@ namespace PPAI_IVR.Datos
             Estado estadoIniciada = new Estado("Iniciada");
             Estado estadoEnCurso = new Estado("EnCurso");
             Estado estadoFinalizada = new Estado("Finalizada");
-            Estado estadoCancelada = new Estado("Cancelada");
+            Estado estadoCancelada = new Estado("Cancelado");
             List<Estado> estados = new List<Estado>();
             estados.Add(estadoIniciada);
             estados.Add(estadoEnCurso);
@@ -45,7 +43,6 @@ namespace PPAI_IVR.Datos
             estados.Add(estadoCancelada);
 
             this.estados = estados;
-
 
             InformacionCliente infoCliente1 = new InformacionCliente("21/03/2002");
             InformacionCliente infoCliente2= new InformacionCliente("5012");
@@ -64,8 +61,6 @@ namespace PPAI_IVR.Datos
 
             this.clientes = clientes;
 
-
-
             //Crear tipos informacion
             TipoInformacion tipoInfo1 = new TipoInformacion("fechaNacimiento");
             TipoInformacion tipoInfo2 = new TipoInformacion("codPostal");
@@ -75,7 +70,6 @@ namespace PPAI_IVR.Datos
             tiposInfo.Add(tipoInfo2);
             tiposInfo.Add(tipoInfo3);
 
-            
             //Opciones Validacion  (no es necesario)
 
             OpcionValidacion opVal1 = new OpcionValidacion(true, "3/10/89");
@@ -134,7 +128,6 @@ namespace PPAI_IVR.Datos
             categorias.Add(cat2);
 
             this.categorias = categorias;
-
                 
             //Creacion Cambios Estado
             CambioEstado ce1 = new CambioEstado(DateTime.Now, estadoIniciada);
@@ -143,7 +136,6 @@ namespace PPAI_IVR.Datos
             listaCambiosEstado.Add(ce1);
 
             this.cambiosEstado = listaCambiosEstado;
-
 
             Usuario operador = new Usuario("NombreOperador");
         }
