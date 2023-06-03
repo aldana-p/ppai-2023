@@ -207,7 +207,9 @@ namespace PPAI_IVR.Clases
                 "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
                 "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
 
-            
+           Console.WriteLine(" Descripción operador: " + llamada.descripcionOperador +
+                              "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
+                                             "\n Cantidad de cambios de estados: " + lista.Count.ToString());
             finCU();
         }
 

@@ -55,6 +55,7 @@ namespace PPAI_IVR
             cmbOpcion.Text = categoriaOpcionSubopcion[1];
             cmbSubopcion.Text = categoriaOpcionSubopcion[2];
 
+            gbValidaciones.Visible = true;
         }
 
         public void mostrarDatosValidaciones(List<string> nombresValidaciones)
@@ -125,28 +126,22 @@ namespace PPAI_IVR
             bool res = gestor.tomarRespuestasValidaciones(respuestas);
             if (res)
             {
-                DialogResult result = MessageBox.Show("Validaciones CORRECTAS \n¿Desea continuar?", "Validacion Correcta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+                List<string> acciones = gestor.buscarAcciones();
+                foreach (string accion in acciones)
                 {
-                    List<string> acciones = gestor.buscarAcciones();
-                    foreach (string accion in acciones)
-                    {
-                        cmbAcciones.Items.Add(accion);
-                    }
-                    gbRespuestaOperador.Visible = true;
+                    cmbAcciones.Items.Add(accion);
                 }
-                else if (result == DialogResult.No)
-                {
-                    this.Close();
-                }
+                gbRespuestaOperador.Visible = true;
+
             }
             else
             {
                 // Corregir condiciones (si los txt estaban vacíos por ejemplo)
                 MessageBox.Show("Validaciones INCORRECTAS. Se finalizará el programa.", "Validacion Incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                this.Close();
+                txtRtaValidacion1.Clear();
+                txtRtaValidacion2.Clear();
+                txtRtaValidacion3.Clear();
             }
 
         }
