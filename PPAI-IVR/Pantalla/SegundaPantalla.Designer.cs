@@ -38,7 +38,7 @@
             // 
             // btnRegistrarRtaOperador
             // 
-            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(592, 239);
+            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(378, 249);
             this.btnRegistrarRtaOperador.Name = "btnRegistrarRtaOperador";
             this.btnRegistrarRtaOperador.Size = new System.Drawing.Size(156, 50);
             this.btnRegistrarRtaOperador.TabIndex = 41;
@@ -52,7 +52,7 @@
             this.cmbAcciones.FormattingEnabled = true;
             this.cmbAcciones.Location = new System.Drawing.Point(186, 198);
             this.cmbAcciones.Name = "cmbAcciones";
-            this.cmbAcciones.Size = new System.Drawing.Size(278, 24);
+            this.cmbAcciones.Size = new System.Drawing.Size(315, 24);
             this.cmbAcciones.TabIndex = 40;
             // 
             // label13
@@ -68,7 +68,7 @@
             // 
             this.txtRespuestaOperador.Location = new System.Drawing.Point(186, 54);
             this.txtRespuestaOperador.Name = "txtRespuestaOperador";
-            this.txtRespuestaOperador.Size = new System.Drawing.Size(373, 115);
+            this.txtRespuestaOperador.Size = new System.Drawing.Size(315, 115);
             this.txtRespuestaOperador.TabIndex = 38;
             this.txtRespuestaOperador.Text = "";
             // 
@@ -85,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 367);
+            this.ClientSize = new System.Drawing.Size(556, 326);
             this.Controls.Add(this.btnRegistrarRtaOperador);
             this.Controls.Add(this.cmbAcciones);
             this.Controls.Add(this.label13);

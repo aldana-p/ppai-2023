@@ -53,7 +53,7 @@ namespace PPAI_IVR.Datos
             List<InformacionCliente> informaciones = new List<InformacionCliente>();
             informaciones.Add(infoCliente1);
             informaciones.Add(infoCliente2);
-            informaciones.Add(infoCliente2);
+            informaciones.Add(infoCliente3);
 
             //Creacion Clientes
             Cliente cliente1 = new Cliente(123123, "Aldana", informaciones);
@@ -76,7 +76,8 @@ namespace PPAI_IVR.Datos
             tiposInfo.Add(tipoInfo3);
 
             
-            //Opciones Validacion
+            //Opciones Validacion  (no es necesario)
+
             OpcionValidacion opVal1 = new OpcionValidacion(true, "3/10/89");
             OpcionValidacion opVal2 = new OpcionValidacion(false, "12/5/89");
             OpcionValidacion opVal3 = new OpcionValidacion(false, "5/8/89");

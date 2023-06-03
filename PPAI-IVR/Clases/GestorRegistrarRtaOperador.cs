@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,8 +45,7 @@ namespace PPAI_IVR.Clases
             this.llamada = llamada;
         }
 
-
-        public void comunicarseConOperador()
+        public void registrarRespuestaOperador()
         {
             identificarOpcion(llamada);
         }
@@ -95,9 +95,8 @@ namespace PPAI_IVR.Clases
             string nombreCliente = seleccionadaLlamada.buscarDatosLlamada();
             string[] categoriaOpcionSubopcion = this.categoria.mostrarDatosCategoriaOpcionSubopcion(seleccionadaLlamada.opcionSeleccionada, seleccionadaLlamada.subopcionSeleccionada);
 
-            buscarValidaciones();
-
             pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
+            buscarValidaciones();
         }
 
         // Método que busca los nombres de las validaciones a realizar
@@ -117,8 +116,7 @@ namespace PPAI_IVR.Clases
         }
 
         
-        //METODOS DEL LOOP PARA CADA RESPUESTA
-
+        //MÉTODOS DEL LOOP PARA CADA RESPUESTA
         public bool tomarRespuestasValidaciones(string[] respuestas)
         {
             return validarRespuestas(respuestas);
@@ -145,10 +143,7 @@ namespace PPAI_IVR.Clases
         {
             this.respuestaOperador = respuestaOperador;
         }
-
-
-
-        
+                
         public List<string> buscarAcciones()
         {
             List<string> nombresAcciones = new List<string>();
@@ -160,10 +155,9 @@ namespace PPAI_IVR.Clases
             return nombresAcciones;
         }
 
-
         public void tomarSeleccionAccion(string accion)
         {
-            this.accionSeleccionada = accion;  // El caso de uso 28 se encarga de registrarla (asignarla a la llamada?)
+            this.accionSeleccionada = accion;  // El caso de uso 28 se encarga de registrarla (asignarla a la llamada)
             segundaPantalla.solicitarConfirmacion();
 
         }
@@ -196,10 +190,10 @@ namespace PPAI_IVR.Clases
             }
 
             fechaHoraActual = obtenerFechaHoraActual();
-            actualizarEstadoLlamadaFinalizada(estadoFinalizada);
+            actualizarEstadoLlamadaAFinalizada(estadoFinalizada);
         }
 
-        public void actualizarEstadoLlamadaFinalizada(Estado nuevoEstado)
+        public void actualizarEstadoLlamadaAFinalizada(Estado nuevoEstado)
         {
             llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
             llamada.setDescripcionOperador(respuestaOperador);
@@ -209,8 +203,14 @@ namespace PPAI_IVR.Clases
             CambioEstado ultimo = llamada.cambioEstado.ElementAt(llamada.cambioEstado.Count - 1 );
             llamada.calcularDuracion(primero.fechaHoraInicio, ultimo.fechaHoraInicio);
 
-            // Prueba para ver el seteo de la descripcion y la duracion de la llamada
-            MessageBox.Show("Descripcion operador:" + llamada.descripcionOperador + "  Duración:" + llamada.duracion.ToString("hh':'mm':'ss"));
+
+            // Prueba para mostrar que se crearon los cambios de estado, se seteo de la desc. del operador y la duración de la llamada.
+            List<CambioEstado> lista = llamada.cambioEstado;
+            MessageBox.Show(" Descripción operador: " + llamada.descripcionOperador +
+                "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
+                "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
+
+            
             finCU();
         }
 

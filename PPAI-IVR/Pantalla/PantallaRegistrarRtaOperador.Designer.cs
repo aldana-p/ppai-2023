@@ -41,10 +41,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.txtValidacion1 = new System.Windows.Forms.TextBox();
             this.btnValidarRespuestas = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnIngresarRta1 = new System.Windows.Forms.Button();
             this.btnMostrarValidaciones = new System.Windows.Forms.Button();
             this.gbValidaciones = new System.Windows.Forms.GroupBox();
@@ -63,7 +59,6 @@
             this.gbValidacion1 = new System.Windows.Forms.GroupBox();
             this.txtRtaValidacion1 = new System.Windows.Forms.TextBox();
             this.lblRta1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.gbValidaciones.SuspendLayout();
             this.gbValidacion3.SuspendLayout();
@@ -163,49 +158,13 @@
             // btnValidarRespuestas
             // 
             this.btnValidarRespuestas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidarRespuestas.Location = new System.Drawing.Point(642, 305);
+            this.btnValidarRespuestas.Location = new System.Drawing.Point(608, 322);
             this.btnValidarRespuestas.Name = "btnValidarRespuestas";
             this.btnValidarRespuestas.Size = new System.Drawing.Size(187, 54);
             this.btnValidarRespuestas.TabIndex = 14;
             this.btnValidarRespuestas.Text = "Validar Respuestas";
             this.btnValidarRespuestas.UseVisualStyleBackColor = true;
             this.btnValidarRespuestas.Click += new System.EventHandler(this.tomarRespuestas);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(875, 106);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 16);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "label8";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(875, 140);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 16);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "label9";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(875, 179);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 16);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "label10";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(835, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 16);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "Pruebas:";
             // 
             // btnIngresarRta1
             // 
@@ -221,7 +180,7 @@
             // btnMostrarValidaciones
             // 
             this.btnMostrarValidaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrarValidaciones.Location = new System.Drawing.Point(598, 196);
+            this.btnMostrarValidaciones.Location = new System.Drawing.Point(573, 186);
             this.btnMostrarValidaciones.Name = "btnMostrarValidaciones";
             this.btnMostrarValidaciones.Size = new System.Drawing.Size(172, 38);
             this.btnMostrarValidaciones.TabIndex = 29;
@@ -236,9 +195,9 @@
             this.gbValidaciones.Controls.Add(this.gbValidacion1);
             this.gbValidaciones.Controls.Add(this.btnValidarRespuestas);
             this.gbValidaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbValidaciones.Location = new System.Drawing.Point(40, 273);
+            this.gbValidaciones.Location = new System.Drawing.Point(39, 263);
             this.gbValidaciones.Name = "gbValidaciones";
-            this.gbValidaciones.Size = new System.Drawing.Size(856, 395);
+            this.gbValidaciones.Size = new System.Drawing.Size(829, 395);
             this.gbValidaciones.TabIndex = 30;
             this.gbValidaciones.TabStop = false;
             this.gbValidaciones.Text = "VALIDACIONES";
@@ -396,15 +355,6 @@
             this.lblRta1.Text = "Respuesta:";
             this.lblRta1.Visible = false;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(151, 236);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 16);
-            this.label12.TabIndex = 31;
-            this.label12.Text = "label12";
-            // 
             // cmbCategoria
             // 
             this.cmbCategoria.Enabled = false;
@@ -419,15 +369,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(997, 715);
+            this.ClientSize = new System.Drawing.Size(928, 715);
             this.Controls.Add(this.cmbCategoria);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.gbValidaciones);
             this.Controls.Add(this.btnMostrarValidaciones);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbSubopcion);
             this.Controls.Add(this.cmbOpcion);
             this.Controls.Add(this.txtNombreCliente);
@@ -467,10 +412,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         public System.Windows.Forms.TextBox txtValidacion1;
         private System.Windows.Forms.Button btnValidarRespuestas;
-        public System.Windows.Forms.Label label8;
-        public System.Windows.Forms.Label label9;
-        public System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnIngresarRta1;
         private System.Windows.Forms.Button btnMostrarValidaciones;
         private System.Windows.Forms.Button btnIngresarRta2;
@@ -486,7 +427,6 @@
         public System.Windows.Forms.GroupBox gbValidacion3;
         public System.Windows.Forms.GroupBox gbValidacion2;
         public System.Windows.Forms.GroupBox gbValidacion1;
-        public System.Windows.Forms.Label label12;
         public System.Windows.Forms.TextBox txtRtaValidacion1;
         public System.Windows.Forms.TextBox txtRtaValidacion3;
         public System.Windows.Forms.TextBox txtRtaValidacion2;

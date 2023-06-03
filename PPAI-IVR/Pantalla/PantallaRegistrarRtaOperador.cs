@@ -56,11 +56,6 @@ namespace PPAI_IVR
             cmbOpcion.Text = categoriaOpcionSubopcion[1];
             cmbSubopcion.Text = categoriaOpcionSubopcion[2];
 
-            //Pruebas para ver que efectivamente se creo el nuevo CambioEstado
-            List<CambioEstado> lista = selecLlamada.cambioEstado;
-            label10.Text = lista.Count.ToString();
-            label8.Text = lista[0].estado.nombre;
-            label9.Text = lista[1].estado.nombre;
         }
 
         public void mostrarDatosValidaciones(List<string> nombresValidaciones)
@@ -91,7 +86,7 @@ namespace PPAI_IVR
                         gbValidacion3.Visible = false;
 
                         txtValidacion1.Text = nombresValidaciones[0];
-                        txtValidacion1.Text = nombresValidaciones[1];
+                        txtValidacion2.Text = nombresValidaciones[1];
 
                     }
                     else
@@ -103,8 +98,8 @@ namespace PPAI_IVR
                             gbValidacion3.Visible = true;
 
                             txtValidacion1.Text = nombresValidaciones[0];
-                            txtValidacion1.Text = nombresValidaciones[1];
-                            txtValidacion1.Text = nombresValidaciones[2];
+                            txtValidacion2.Text = nombresValidaciones[1];
+                            txtValidacion3.Text = nombresValidaciones[2];
 
                         }
                     }
@@ -136,8 +131,7 @@ namespace PPAI_IVR
             bool res = gestor.tomarRespuestasValidaciones(respuestas);
             if (res)
             {
-                MessageBox.Show("Validaciones correctas");
-                DialogResult result = MessageBox.Show("Las respuestas ingresadas son correctas... ¿Desea continuar?", "InformaciónCorrecta", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Validaciones CORRECTAS \n¿Desea continuar?", "Validacion Correcta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -152,7 +146,9 @@ namespace PPAI_IVR
             else
             {
                 // Corregir condiciones (si los txt estaban vacíos por ejemplo)
-                MessageBox.Show("Validaciones incorrectas");
+                MessageBox.Show("Validaciones INCORRECTAS. Se finalizará el programa.", "Validacion Incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                this.Close();
             }
 
         }

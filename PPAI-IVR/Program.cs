@@ -29,7 +29,7 @@ namespace PPAI_IVR
             //PantallaRegistrarRtaOperador pantalla = new PantallaRegistrarRtaOperador(llamadaSeleccionada);
             
             
-            gestor.comunicarseConOperador();
+            gestor.registrarRespuestaOperador();
 
             Application.Run(gestor.pantalla);
 

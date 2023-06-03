@@ -42,9 +42,6 @@ namespace PPAI_IVR.Clases
 
         public void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado)
         {
-            //CambioEstado enCurso = new CambioEstado(fechaHoraActual, estado);      
-            //Si lo llamao "enCurso" voy a tener que repetir el método para cuando sea "finalizada"
-            //FALTA PROBARRRR !!!!!!!!!!!!!!!!!!!!!!!!!!
             CambioEstado nuevoEstado = new CambioEstado(fechaHoraActual, estado);
             cambioEstado.Add(nuevoEstado);
             

@@ -34,6 +34,7 @@ namespace PPAI_IVR.Clases
                 if (info.esInformacionCorrecta(respuesta))
                 {
                     contador++;
+                    break;
                 };
             }
 
