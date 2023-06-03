@@ -138,7 +138,7 @@ namespace PPAI_IVR
             else
             {
                 // Corregir condiciones (si los txt estaban vacíos por ejemplo)
-                MessageBox.Show("Validaciones INCORRECTAS. Se finalizará el programa.", "Validacion Incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Validaciones INCORRECTAS.\nIngrese el valor correcto", "Validacion Incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRtaValidacion1.Clear();
                 txtRtaValidacion2.Clear();
                 txtRtaValidacion3.Clear();

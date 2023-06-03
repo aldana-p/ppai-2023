@@ -405,7 +405,7 @@
             // btnValidarRespuestas
             // 
             this.btnValidarRespuestas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidarRespuestas.Location = new System.Drawing.Point(372, 266);
+            this.btnValidarRespuestas.Location = new System.Drawing.Point(372, 258);
             this.btnValidarRespuestas.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidarRespuestas.Name = "btnValidarRespuestas";
             this.btnValidarRespuestas.Size = new System.Drawing.Size(140, 44);
