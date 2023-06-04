@@ -119,26 +119,25 @@ namespace PPAI_IVR.Clases
 
 
         //MÉTODOS DEL LOOP PARA CADA RESPUESTA
-        public bool tomarRespuestasValidaciones(string[] respuestas)
+        public string[] tomarRespuestasValidaciones(string[] respuestas)
         {
             return validarRespuestas(respuestas);
         }
 
-        public bool validarRespuestas(string[] respuestas)
+        public string[] validarRespuestas(string[] respuestas)
         {
+            string[] validaciones = new string[respuestas.Length];
             int contador = 0;
+
             foreach (string res in respuestas)
             {
-                if (llamada.validarRespuesta(res))
+                if (!llamada.validarRespuesta(res))
                 {
-                    contador++;
+                    validaciones[contador] = "Ingrese el valor correcto";
                 };
+                contador++;
             }
-            if (contador == respuestas.Length)
-            {
-                return true;
-            }
-            return false;
+            return validaciones;
         }
 
         public void tomarRespuestaOperador(string respuestaOperador)

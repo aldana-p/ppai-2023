@@ -56,6 +56,10 @@ namespace PPAI_IVR
             cmbSubopcion.Text = categoriaOpcionSubopcion[2];
 
             gbValidaciones.Visible = true;
+
+            lblValidacionError1.Visible = false;
+            lblValidacionError2.Visible = false;
+            lblValidacionError3.Visible = false;
         }
 
         public void mostrarDatosValidaciones(List<string> nombresValidaciones)
@@ -123,27 +127,57 @@ namespace PPAI_IVR
                 }
             }
 
-            bool res = gestor.tomarRespuestasValidaciones(respuestas);
-            if (res)
-            {
+            string[] res = gestor.tomarRespuestasValidaciones(respuestas);
 
+            //clear all error labels
+            lblValidacionError1.Text = "";
+            lblValidacionError1.Visible = false;
+            lblValidacionError2.Text = "";
+            lblValidacionError2.Visible = false;
+            lblValidacionError3.Text = "";
+            lblValidacionError3.Visible = false;
+
+            bool sinErrores = true;
+
+            for( int i = 0; i < res.Length; i++)
+            {
+                if (res[i] != null)
+                {
+                    if (i == 0)
+                    {
+                        lblValidacionError1.Text = res[i].ToString();
+                        lblValidacionError1.Visible = true;
+                        lblValidacionError1.ForeColor = Color.Red;
+                        txtRtaValidacion1.Clear();
+                        sinErrores = false;
+                    }
+                    if (i == 1)
+                    {
+                        lblValidacionError2.Text = res[i].ToString();
+                        lblValidacionError2.Visible = true;
+                        lblValidacionError2.ForeColor = Color.Red;
+                        txtRtaValidacion2.Clear();
+                        sinErrores = false;
+                    }
+                    if (i == 2)
+                    {
+                        lblValidacionError3.Text = res[i].ToString();
+                        lblValidacionError3.Visible = true;
+                        lblValidacionError3.ForeColor = Color.Red;
+                        txtRtaValidacion3.Clear();
+                        sinErrores = false;
+                    }
+                }
+            } 
+            if(sinErrores)
+            {
                 List<string> acciones = gestor.buscarAcciones();
                 foreach (string accion in acciones)
                 {
-                    cmbAcciones.Items.Add(accion);
+                      cmbAcciones.Items.Add(accion);
                 }
-                gbRespuestaOperador.Visible = true;
-
+                    gbRespuestaOperador.Visible = true;
             }
-            else
-            {
-                // Corregir condiciones (si los txt estaban vacíos por ejemplo)
-                MessageBox.Show("Validaciones INCORRECTAS.\nIngrese el valor correcto", "Validacion Incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtRtaValidacion1.Clear();
-                txtRtaValidacion2.Clear();
-                txtRtaValidacion3.Clear();
-            }
-
         }
 
         private void btnRegistrarRtaOperador_Click(object sender, EventArgs e)
