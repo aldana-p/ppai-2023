@@ -10,7 +10,7 @@ namespace PPAI_IVR.Clases
     {
         private string mensajeValidacion { get; set; }//hace falta? es audio
         private string nombre { get; set; }
-        public List<OpcionValidacion> opcionesValidacion { get; set; }
+        private List<OpcionValidacion> opcionesValidacion { get; set; }
         private TipoInformacion tipo { get; set; }
 
         public Validacion(string mensajeValidacion, string nombre, List<OpcionValidacion> opcionesValidacion, TipoInformacion tipo)

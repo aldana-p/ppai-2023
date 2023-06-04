@@ -21,19 +21,22 @@ namespace PPAI_IVR.Clases
         private Estado estadoCancelado { get; set; }
         private List<Estado> estados { get; set; }
         private DateTime fechaHoraActual { get; set; }
-        public PantallaRegistrarRtaOperador pantalla { get; set; }
+        private PantallaRegistrarRtaOperador pantalla { get; set; }
         private List<Accion> acciones { get; set; }
         private string respuestaOperador { get; set; }
         private string accionSeleccionada { get; set; }
+
+        public PantallaRegistrarRtaOperador Pantalla { get => pantalla; set => pantalla = value; }
+
 
 
         public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones)
         {
             this.llamada = llamada;
-            this.opcion = llamada.opcionSeleccionada;
+            this.opcion = llamada.OpcionSeleccionada;
             this.categoria = categoria;
-            this.subopcion = llamada.subopcionSeleccionada;
-            this.cliente = llamada.cliente;
+            this.subopcion = llamada.SubopcionSeleccionada;
+            this.cliente = llamada.Cliente;
             this.pantalla = new PantallaRegistrarRtaOperador(this);
             this.estados = estados;
             this.acciones = acciones;
@@ -50,7 +53,7 @@ namespace PPAI_IVR.Clases
 
         public void identificarOpcion(Llamada llamada)
         {
-            if (subopcion.nombre == "Comunicarse con responsable de atención al cliente")
+            if (subopcion.Nombre == "Comunicarse con responsable de atención al cliente")
             {
                 buscarEstadoEnCurso();
             }
@@ -92,7 +95,7 @@ namespace PPAI_IVR.Clases
         public void buscarDatosLlamada(Llamada seleccionadaLlamada)
         {
             string nombreCliente = seleccionadaLlamada.buscarDatosLlamada();
-            string[] categoriaOpcionSubopcion = this.categoria.mostrarDatosCategoriaOpcionSubopcion(seleccionadaLlamada.opcionSeleccionada, seleccionadaLlamada.subopcionSeleccionada);
+            string[] categoriaOpcionSubopcion = this.categoria.mostrarDatosCategoriaOpcionSubopcion(seleccionadaLlamada.OpcionSeleccionada, seleccionadaLlamada.SubopcionSeleccionada);
 
             pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
             buscarValidaciones();
@@ -197,20 +200,20 @@ namespace PPAI_IVR.Clases
             llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
             llamada.setDescripcionOperador(respuestaOperador);
 
-            CambioEstado primero = llamada.cambioEstado.ElementAt(0);
+            CambioEstado primero = llamada.CambioEstado.ElementAt(0);
 
-            CambioEstado ultimo = llamada.cambioEstado.ElementAt(llamada.cambioEstado.Count - 1);
-            llamada.calcularDuracion(primero.fechaHoraInicio, ultimo.fechaHoraInicio);
+            CambioEstado ultimo = llamada.CambioEstado.ElementAt(llamada.CambioEstado.Count - 1);
+            llamada.calcularDuracion(primero.FechaHoraInicio, ultimo.FechaHoraInicio);
 
 
             // Prueba para mostrar que se crearon los cambios de estado, se seteo de la desc. del operador y la duración de la llamada.
-            List<CambioEstado> lista = llamada.cambioEstado;
-            MessageBox.Show(" Descripción operador: " + llamada.descripcionOperador +
-                "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
+            List<CambioEstado> lista = llamada.CambioEstado;
+            MessageBox.Show(" Descripción operador: " + llamada.DescripcionOperador +
+                "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
                 "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
 
-            Console.WriteLine(" Descripción operador: " + llamada.descripcionOperador +
-                               "\n Duración de la llamada: " + llamada.duracion.ToString("hh':'mm':'ss") +
+            Console.WriteLine(" Descripción operador: " + llamada.DescripcionOperador +
+                               "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
                                               "\n Cantidad de cambios de estados: " + lista.Count.ToString());
             finCU();
         }
@@ -239,8 +242,8 @@ namespace PPAI_IVR.Clases
             buscarEstadoCancelado();
             fechaHoraActual = obtenerFechaHoraActual();
             actualizarEstadoLlamadaACancelado(estadoCancelado);
-            List<CambioEstado> lista = llamada.cambioEstado;
-            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].estado.nombre);
+            List<CambioEstado> lista = llamada.CambioEstado;
+            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
                           
 
         }

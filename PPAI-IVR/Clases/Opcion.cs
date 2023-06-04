@@ -11,8 +11,10 @@ namespace PPAI_IVR.Clases
         private string mensajeSubopciones { get; set; }
         private string nombre { get; set; }
         private int nroOrden { get; set; }
-        public List<Subopcion> subopcion { get; set; }
+        private List<Subopcion> subopcion { get; set; }
         private List<Validacion> validacionesRequeridas { get; set; }
+
+        public List<Subopcion> Subopcion { get => subopcion; set => subopcion = value; }
 
         public Opcion(string nombre, int nroOrden, List<Subopcion> subopciones)
         {

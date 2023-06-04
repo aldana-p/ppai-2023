@@ -8,8 +8,12 @@ namespace PPAI_IVR.Clases
 {
     public class CambioEstado
     {
-        public DateTime fechaHoraInicio { get; set; }
-        public Estado estado { get; set; }
+        private DateTime fechaHoraInicio { get; set; }
+        private Estado estado { get; set; }
+
+        public DateTime FechaHoraInicio { get => fechaHoraInicio; set => fechaHoraInicio = value; }
+        public Estado Estado { get => estado; set => estado = value; }
+
 
         public CambioEstado(DateTime fechaHora, Estado estado)
         {

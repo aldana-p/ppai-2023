@@ -9,9 +9,11 @@ namespace PPAI_IVR.Clases
 {
     public class Estado
     {
-        public string nombre { get; set; }
+        private string nombre { get; set; }
 
-        public Estado(string nombre)
+        public string Nombre { get => nombre; set => nombre = value; }
+
+        public Estado(string nombre) //Podría usarse directamente el set ?? 
         {
             this.nombre = nombre;
         }
