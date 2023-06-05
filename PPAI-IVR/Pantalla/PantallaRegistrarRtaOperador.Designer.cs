@@ -63,6 +63,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.gbRespuestaOperador = new System.Windows.Forms.GroupBox();
             this.btnColgarLlamada = new System.Windows.Forms.Button();
+            this.lblValidacionError1 = new System.Windows.Forms.Label();
+            this.lblValidacionError2 = new System.Windows.Forms.Label();
+            this.lblValidacionError3 = new System.Windows.Forms.Label();
             this.gbValidaciones.SuspendLayout();
             this.gbValidacion3.SuspendLayout();
             this.gbValidacion2.SuspendLayout();
@@ -74,7 +77,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 28);
+            this.label1.Location = new System.Drawing.Point(7, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 22);
@@ -84,7 +87,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 72);
+            this.label2.Location = new System.Drawing.Point(8, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
@@ -94,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 102);
+            this.label3.Location = new System.Drawing.Point(32, 85);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
@@ -104,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(320, 72);
+            this.label4.Location = new System.Drawing.Point(43, 113);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
@@ -114,7 +117,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(303, 100);
+            this.label5.Location = new System.Drawing.Point(26, 141);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
@@ -124,30 +127,30 @@
             // txtNombreCliente
             // 
             this.txtNombreCliente.Enabled = false;
-            this.txtNombreCliente.Location = new System.Drawing.Point(116, 72);
+            this.txtNombreCliente.Location = new System.Drawing.Point(87, 53);
             this.txtNombreCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.Size = new System.Drawing.Size(171, 20);
+            this.txtNombreCliente.Size = new System.Drawing.Size(174, 20);
             this.txtNombreCliente.TabIndex = 5;
             // 
             // cmbOpcion
             // 
             this.cmbOpcion.Enabled = false;
             this.cmbOpcion.FormattingEnabled = true;
-            this.cmbOpcion.Location = new System.Drawing.Point(364, 72);
+            this.cmbOpcion.Location = new System.Drawing.Point(87, 113);
             this.cmbOpcion.Margin = new System.Windows.Forms.Padding(2);
             this.cmbOpcion.Name = "cmbOpcion";
-            this.cmbOpcion.Size = new System.Drawing.Size(190, 21);
+            this.cmbOpcion.Size = new System.Drawing.Size(174, 21);
             this.cmbOpcion.TabIndex = 7;
             // 
             // cmbSubopcion
             // 
             this.cmbSubopcion.Enabled = false;
             this.cmbSubopcion.FormattingEnabled = true;
-            this.cmbSubopcion.Location = new System.Drawing.Point(364, 100);
+            this.cmbSubopcion.Location = new System.Drawing.Point(87, 141);
             this.cmbSubopcion.Margin = new System.Windows.Forms.Padding(2);
             this.cmbSubopcion.Name = "cmbSubopcion";
-            this.cmbSubopcion.Size = new System.Drawing.Size(190, 21);
+            this.cmbSubopcion.Size = new System.Drawing.Size(174, 21);
             this.cmbSubopcion.TabIndex = 8;
             // 
             // label7
@@ -176,11 +179,11 @@
             this.gbValidaciones.Controls.Add(this.gbValidacion1);
             this.gbValidaciones.Controls.Add(this.btnValidarRespuestas);
             this.gbValidaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbValidaciones.Location = new System.Drawing.Point(38, 136);
+            this.gbValidaciones.Location = new System.Drawing.Point(268, 42);
             this.gbValidaciones.Margin = new System.Windows.Forms.Padding(2);
             this.gbValidaciones.Name = "gbValidaciones";
             this.gbValidaciones.Padding = new System.Windows.Forms.Padding(2);
-            this.gbValidaciones.Size = new System.Drawing.Size(516, 314);
+            this.gbValidaciones.Size = new System.Drawing.Size(323, 352);
             this.gbValidaciones.TabIndex = 30;
             this.gbValidaciones.TabStop = false;
             this.gbValidaciones.Text = "VALIDACIONES";
@@ -188,15 +191,16 @@
             // 
             // gbValidacion3
             // 
+            this.gbValidacion3.Controls.Add(this.lblValidacionError3);
             this.gbValidacion3.Controls.Add(this.txtRtaValidacion3);
             this.gbValidacion3.Controls.Add(this.lblRta3);
             this.gbValidacion3.Controls.Add(this.txtValidacion3);
             this.gbValidacion3.Controls.Add(this.label17);
-            this.gbValidacion3.Location = new System.Drawing.Point(32, 180);
+            this.gbValidacion3.Location = new System.Drawing.Point(13, 206);
             this.gbValidacion3.Margin = new System.Windows.Forms.Padding(2);
             this.gbValidacion3.Name = "gbValidacion3";
             this.gbValidacion3.Padding = new System.Windows.Forms.Padding(2);
-            this.gbValidacion3.Size = new System.Drawing.Size(372, 74);
+            this.gbValidacion3.Size = new System.Drawing.Size(294, 86);
             this.gbValidacion3.TabIndex = 42;
             this.gbValidacion3.TabStop = false;
             this.gbValidacion3.Text = "3° Validacion";
@@ -241,15 +245,16 @@
             // 
             // gbValidacion2
             // 
+            this.gbValidacion2.Controls.Add(this.lblValidacionError2);
             this.gbValidacion2.Controls.Add(this.txtRtaValidacion2);
             this.gbValidacion2.Controls.Add(this.lblRta2);
             this.gbValidacion2.Controls.Add(this.txtValidacion2);
             this.gbValidacion2.Controls.Add(this.label6);
-            this.gbValidacion2.Location = new System.Drawing.Point(32, 98);
+            this.gbValidacion2.Location = new System.Drawing.Point(13, 116);
             this.gbValidacion2.Margin = new System.Windows.Forms.Padding(2);
             this.gbValidacion2.Name = "gbValidacion2";
             this.gbValidacion2.Padding = new System.Windows.Forms.Padding(2);
-            this.gbValidacion2.Size = new System.Drawing.Size(372, 77);
+            this.gbValidacion2.Size = new System.Drawing.Size(294, 86);
             this.gbValidacion2.TabIndex = 41;
             this.gbValidacion2.TabStop = false;
             this.gbValidacion2.Text = "2° Validacion";
@@ -294,15 +299,16 @@
             // 
             // gbValidacion1
             // 
+            this.gbValidacion1.Controls.Add(this.lblValidacionError1);
             this.gbValidacion1.Controls.Add(this.txtRtaValidacion1);
             this.gbValidacion1.Controls.Add(this.lblRta1);
             this.gbValidacion1.Controls.Add(this.txtValidacion1);
             this.gbValidacion1.Controls.Add(this.label7);
-            this.gbValidacion1.Location = new System.Drawing.Point(32, 24);
+            this.gbValidacion1.Location = new System.Drawing.Point(13, 26);
             this.gbValidacion1.Margin = new System.Windows.Forms.Padding(2);
             this.gbValidacion1.Name = "gbValidacion1";
             this.gbValidacion1.Padding = new System.Windows.Forms.Padding(2);
-            this.gbValidacion1.Size = new System.Drawing.Size(372, 68);
+            this.gbValidacion1.Size = new System.Drawing.Size(294, 86);
             this.gbValidacion1.TabIndex = 40;
             this.gbValidacion1.TabStop = false;
             this.gbValidacion1.Text = "1° Validacion";
@@ -329,10 +335,10 @@
             // btnValidarRespuestas
             // 
             this.btnValidarRespuestas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidarRespuestas.Location = new System.Drawing.Point(372, 258);
+            this.btnValidarRespuestas.Location = new System.Drawing.Point(189, 296);
             this.btnValidarRespuestas.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidarRespuestas.Name = "btnValidarRespuestas";
-            this.btnValidarRespuestas.Size = new System.Drawing.Size(140, 44);
+            this.btnValidarRespuestas.Size = new System.Drawing.Size(118, 38);
             this.btnValidarRespuestas.TabIndex = 14;
             this.btnValidarRespuestas.Text = "Validar Información";
             this.btnValidarRespuestas.UseVisualStyleBackColor = true;
@@ -342,7 +348,7 @@
             // 
             this.cmbCategoria.Enabled = false;
             this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Location = new System.Drawing.Point(113, 100);
+            this.cmbCategoria.Location = new System.Drawing.Point(88, 83);
             this.cmbCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(174, 21);
@@ -351,7 +357,7 @@
             // btnRegistrarRtaOperador
             // 
             this.btnRegistrarRtaOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(372, 93);
+            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(424, 113);
             this.btnRegistrarRtaOperador.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegistrarRtaOperador.Name = "btnRegistrarRtaOperador";
             this.btnRegistrarRtaOperador.Size = new System.Drawing.Size(140, 41);
@@ -364,7 +370,7 @@
             // 
             this.cmbAcciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAcciones.FormattingEnabled = true;
-            this.cmbAcciones.Location = new System.Drawing.Point(117, 102);
+            this.cmbAcciones.Location = new System.Drawing.Point(11, 133);
             this.cmbAcciones.Margin = new System.Windows.Forms.Padding(2);
             this.cmbAcciones.Name = "cmbAcciones";
             this.cmbAcciones.Size = new System.Drawing.Size(242, 21);
@@ -373,7 +379,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 102);
+            this.label13.Location = new System.Drawing.Point(10, 118);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(99, 13);
@@ -382,10 +388,10 @@
             // 
             // txtRespuestaOperador
             // 
-            this.txtRespuestaOperador.Location = new System.Drawing.Point(114, 18);
+            this.txtRespuestaOperador.Location = new System.Drawing.Point(11, 33);
             this.txtRespuestaOperador.Margin = new System.Windows.Forms.Padding(2);
             this.txtRespuestaOperador.Name = "txtRespuestaOperador";
-            this.txtRespuestaOperador.Size = new System.Drawing.Size(398, 71);
+            this.txtRespuestaOperador.Size = new System.Drawing.Size(553, 71);
             this.txtRespuestaOperador.TabIndex = 43;
             this.txtRespuestaOperador.Text = "";
             // 
@@ -406,11 +412,11 @@
             this.gbRespuestaOperador.Controls.Add(this.label13);
             this.gbRespuestaOperador.Controls.Add(this.txtRespuestaOperador);
             this.gbRespuestaOperador.Controls.Add(this.label12);
-            this.gbRespuestaOperador.Location = new System.Drawing.Point(38, 454);
+            this.gbRespuestaOperador.Location = new System.Drawing.Point(11, 398);
             this.gbRespuestaOperador.Margin = new System.Windows.Forms.Padding(2);
             this.gbRespuestaOperador.Name = "gbRespuestaOperador";
             this.gbRespuestaOperador.Padding = new System.Windows.Forms.Padding(2);
-            this.gbRespuestaOperador.Size = new System.Drawing.Size(516, 148);
+            this.gbRespuestaOperador.Size = new System.Drawing.Size(580, 168);
             this.gbRespuestaOperador.TabIndex = 47;
             this.gbRespuestaOperador.TabStop = false;
             this.gbRespuestaOperador.Visible = false;
@@ -418,21 +424,48 @@
             // btnColgarLlamada
             // 
             this.btnColgarLlamada.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColgarLlamada.Location = new System.Drawing.Point(414, 606);
+            this.btnColgarLlamada.Location = new System.Drawing.Point(26, 195);
             this.btnColgarLlamada.Margin = new System.Windows.Forms.Padding(2);
             this.btnColgarLlamada.Name = "btnColgarLlamada";
-            this.btnColgarLlamada.Size = new System.Drawing.Size(140, 44);
+            this.btnColgarLlamada.Size = new System.Drawing.Size(238, 49);
             this.btnColgarLlamada.TabIndex = 48;
             this.btnColgarLlamada.Text = "Colgar Llamada";
             this.btnColgarLlamada.UseVisualStyleBackColor = true;
             this.btnColgarLlamada.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblValidacionError1
+            // 
+            this.lblValidacionError1.AutoSize = true;
+            this.lblValidacionError1.Location = new System.Drawing.Point(95, 61);
+            this.lblValidacionError1.Name = "lblValidacionError1";
+            this.lblValidacionError1.Size = new System.Drawing.Size(35, 13);
+            this.lblValidacionError1.TabIndex = 35;
+            this.lblValidacionError1.Text = "label8";
+            // 
+            // lblValidacionError2
+            // 
+            this.lblValidacionError2.AutoSize = true;
+            this.lblValidacionError2.Location = new System.Drawing.Point(95, 65);
+            this.lblValidacionError2.Name = "lblValidacionError2";
+            this.lblValidacionError2.Size = new System.Drawing.Size(35, 13);
+            this.lblValidacionError2.TabIndex = 43;
+            this.lblValidacionError2.Text = "label8";
+            // 
+            // lblValidacionError3
+            // 
+            this.lblValidacionError3.AutoSize = true;
+            this.lblValidacionError3.Location = new System.Drawing.Point(95, 61);
+            this.lblValidacionError3.Name = "lblValidacionError3";
+            this.lblValidacionError3.Size = new System.Drawing.Size(35, 13);
+            this.lblValidacionError3.TabIndex = 44;
+            this.lblValidacionError3.Text = "label8";
             // 
             // PantallaRegistrarRtaOperador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(588, 664);
+            this.ClientSize = new System.Drawing.Size(601, 577);
             this.Controls.Add(this.btnColgarLlamada);
             this.Controls.Add(this.gbRespuestaOperador);
             this.Controls.Add(this.cmbCategoria);
@@ -501,6 +534,9 @@
         private System.Windows.Forms.GroupBox gbRespuestaOperador;
         private System.Windows.Forms.Button btnValidarRespuestas;
         private System.Windows.Forms.Button btnColgarLlamada;
+        private System.Windows.Forms.Label lblValidacionError1;
+        private System.Windows.Forms.Label lblValidacionError2;
+        private System.Windows.Forms.Label lblValidacionError3;
     }
 }
 
