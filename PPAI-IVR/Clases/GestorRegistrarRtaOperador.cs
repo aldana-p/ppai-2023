@@ -97,24 +97,17 @@ namespace PPAI_IVR.Clases
             string nombreCliente = seleccionadaLlamada.buscarDatosLlamada();
             string[] categoriaOpcionSubopcion = this.categoria.mostrarDatosCategoriaOpcionSubopcion(seleccionadaLlamada.OpcionSeleccionada, seleccionadaLlamada.SubopcionSeleccionada);
 
-            pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
-            buscarValidaciones();
+            buscarValidaciones(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
+            //pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
         }
 
         // Método que busca los nombres de las validaciones a realizar
-        public void buscarValidaciones()
+        public void buscarValidaciones(string[] categoriaOpcionSubopcion, string nombreCliente, Llamada selecLlamada)
         {
-            List<Validacion> validacionesRequeridas = subopcion.getValidacionesSubopcion();
-            List<string> nombresValidaciones = new List<string>(); // hago la lista con los nombres para cumplir con el diag. de secuencia (tiene el método a
-            //Validacion getValidacion().
-            for (int i = 0; i < validacionesRequeridas.Count; i++)
-            {
-                nombresValidaciones.Add(validacionesRequeridas[i].getValidacion());
-
-            };
-
-            pantalla.mostrarDatosValidaciones(nombresValidaciones);
-
+            List<string> validacionesRequeridas = subopcion.getValidacionesSubopcion();
+            
+            pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, selecLlamada);
+            pantalla.mostrarDatosValidaciones(validacionesRequeridas);
         }
 
 
@@ -244,7 +237,6 @@ namespace PPAI_IVR.Clases
             List<CambioEstado> lista = llamada.CambioEstado;
             Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
                           
-
         }
 
         public void finCU()
@@ -252,8 +244,5 @@ namespace PPAI_IVR.Clases
             pantalla.Close();
         }
 
-       
-
-        
     }
 }

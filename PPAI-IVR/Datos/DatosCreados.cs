@@ -88,9 +88,6 @@ namespace PPAI_IVR.Datos
             listaOpVal2.Add(opVal5);
             listaOpVal2.Add(opVal6);
 
-
-
-
             Validacion val1 = new Validacion("", "Validar fecha nacimiento", listaOpVal1, tipoInfo1);
             Validacion val2 = new Validacion("", "Validar código postal", listaOpVal2, tipoInfo2);
             List<Validacion> listaValidacion1 = new List<Validacion>();
@@ -102,8 +99,8 @@ namespace PPAI_IVR.Datos
 
             //Creacion subopciones
             Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjer", 1, listaValidacion1);
-            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjer", 2, listaValidacion2);
-            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion2);
+            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjer", 2, listaValidacion1);
+            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
             List<Subopcion> listaSubop1 = new List<Subopcion>();
             listaSubop1.Add(subop1);
             listaSubop1.Add(subop2);
@@ -126,7 +123,7 @@ namespace PPAI_IVR.Datos
             List<Categoria> categorias = new List<Categoria>();
             categorias.Add(cat1);
             categorias.Add(cat2);
-
+  
             this.categorias = categorias;
                 
             //Creacion Cambios Estado
