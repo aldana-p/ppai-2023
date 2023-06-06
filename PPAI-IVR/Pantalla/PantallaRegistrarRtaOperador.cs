@@ -72,38 +72,24 @@ namespace PPAI_IVR
             }
             else
             {
-                if (cantidadValidaciones == 1)
+                gbValidacion1.Visible = false;
+                gbValidacion2.Visible = false;
+                gbValidacion3.Visible = false;
+
+                if (cantidadValidaciones >= 1)
                 {
                     gbValidacion1.Visible = true;
-                    gbValidacion2.Visible = false;
-                    gbValidacion3.Visible = false;
                     txtValidacion1.Text = nombresValidaciones[0];
-
                 }
-                else
+                if (cantidadValidaciones >= 2)
                 {
-                    if (cantidadValidaciones == 2)
-                    {
-                        gbValidacion1.Visible = true;
-                        gbValidacion2.Visible = true;
-                        gbValidacion3.Visible = false;
-                        txtValidacion1.Text = nombresValidaciones[0];
-                        txtValidacion2.Text = nombresValidaciones[1];
-
-                    }
-                    else
-                    {
-                        if (cantidadValidaciones == 3)
-                        {
-                            gbValidacion1.Visible = true;
-                            gbValidacion2.Visible = true;
-                            gbValidacion3.Visible = true;
-                            txtValidacion1.Text = nombresValidaciones[0];
-                            txtValidacion2.Text = nombresValidaciones[1];
-                            txtValidacion3.Text = nombresValidaciones[2];
-
-                        }
-                    }
+                    gbValidacion2.Visible = true;
+                    txtValidacion2.Text = nombresValidaciones[1];
+                }
+                if (cantidadValidaciones >= 3)
+                {
+                    gbValidacion3.Visible = true;
+                    txtValidacion3.Text = nombresValidaciones[2];
                 }
             }
         }
@@ -182,7 +168,14 @@ namespace PPAI_IVR
 
         private void btnRegistrarRtaOperador_Click(object sender, EventArgs e)
         {
-            tomarRespuestaOperador();
+            if (txtRespuestaOperador.Text != "" && cmbAcciones.Text != "")
+            {
+                tomarRespuestaOperador();
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar una respuesta y seleccionar una acción");
+            }
         }
 
         public void tomarRespuestaOperador()
@@ -205,9 +198,9 @@ namespace PPAI_IVR
             if (result == DialogResult.OK)
             {
                 confirmacion = true;
+                confirmar(confirmacion);
             }
-
-            confirmar(confirmacion);
+            
         }
 
         public void confirmar(bool confirmacion)

@@ -32,9 +32,16 @@ namespace PPAI_IVR.Clases
             return nombre;
         }
 
-        public List<Validacion> getValidacionesSubopcion()
+        public List<string> getValidacionesSubopcion()
         {
-            return this.validacionesRequeridas;
+            List<string> nombresValidaciones = new List<string>(); // hago la lista con los nombres para cumplir con el diag. de secuencia (tiene el método a
+            //Validacion getValidacion().
+            for (int i = 0; i < validacionesRequeridas.Count; i++)
+            {
+                nombresValidaciones.Add(validacionesRequeridas[i].getValidacion());
+
+            };
+            return nombresValidaciones;
         }
 
     }
