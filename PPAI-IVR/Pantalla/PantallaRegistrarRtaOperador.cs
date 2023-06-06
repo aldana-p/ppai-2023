@@ -60,11 +60,17 @@ namespace PPAI_IVR
             lblValidacionError1.Visible = false;
             lblValidacionError2.Visible = false;
             lblValidacionError3.Visible = false;
+
+            habilitarPantalla();
+        }
+
+        public void habilitarPantalla()
+        {
+            this.Show();
         }
 
         public void mostrarDatosValidaciones(List<string> nombresValidaciones)
         {
-            //MEJORAR ? 
             int cantidadValidaciones = nombresValidaciones.Count;
             if (cantidadValidaciones == 0)
             {

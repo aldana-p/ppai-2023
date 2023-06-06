@@ -166,7 +166,7 @@ namespace PPAI_IVR.Clases
 
         public bool llamarCU28RegistrarAccion()
         {
-            MessageBox.Show("¡El CU28 se ejecutó con éxito!");
+            MessageBox.Show("¡El CU 28:Registrar acción requerida se ejecutó con éxito!");
             return true;    // RESOLVER ALTERNATIVA A3 !!!!!!
 
         }
@@ -192,7 +192,7 @@ namespace PPAI_IVR.Clases
             llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
             llamada.setDescripcionOperador(respuestaOperador);
 
-            CambioEstado primero = llamada.CambioEstado.ElementAt(0);
+            CambioEstado primero = llamada.CambioEstado.ElementAt(1);
 
             CambioEstado ultimo = llamada.CambioEstado.ElementAt(llamada.CambioEstado.Count - 1);
             llamada.calcularDuracion(primero.FechaHoraInicio, ultimo.FechaHoraInicio);

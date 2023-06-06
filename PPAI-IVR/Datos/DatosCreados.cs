@@ -98,8 +98,8 @@ namespace PPAI_IVR.Datos
             listaValidacion2.Add(val1);
 
             //Creacion subopciones
-            Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjer", 1, listaValidacion1);
-            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjer", 2, listaValidacion1);
+            Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjeta", 1, listaValidacion1);
+            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjeta", 2, listaValidacion1);
             Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
             List<Subopcion> listaSubop1 = new List<Subopcion>();
             listaSubop1.Add(subop1);
