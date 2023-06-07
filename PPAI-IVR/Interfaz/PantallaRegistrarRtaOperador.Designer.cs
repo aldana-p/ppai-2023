@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaRegistrarRtaOperador));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDatosLlamada = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,15 +73,15 @@
             this.gbRespuestaOperador.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblDatosLlamada
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 27);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Datos de la llamada";
+            this.lblDatosLlamada.AutoSize = true;
+            this.lblDatosLlamada.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatosLlamada.Location = new System.Drawing.Point(9, 11);
+            this.lblDatosLlamada.Name = "lblDatosLlamada";
+            this.lblDatosLlamada.Size = new System.Drawing.Size(213, 27);
+            this.lblDatosLlamada.TabIndex = 0;
+            this.lblDatosLlamada.Text = "Datos de la llamada";
             // 
             // label2
             // 
@@ -117,7 +117,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Subopción;";
+            this.label5.Text = "Subopción:";
             // 
             // txtNombreCliente
             // 
@@ -125,7 +125,7 @@
             this.txtNombreCliente.Location = new System.Drawing.Point(116, 65);
             this.txtNombreCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.Size = new System.Drawing.Size(258, 22);
+            this.txtNombreCliente.Size = new System.Drawing.Size(290, 22);
             this.txtNombreCliente.TabIndex = 5;
             // 
             // cmbOpcion
@@ -135,7 +135,7 @@
             this.cmbOpcion.Location = new System.Drawing.Point(116, 139);
             this.cmbOpcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbOpcion.Name = "cmbOpcion";
-            this.cmbOpcion.Size = new System.Drawing.Size(258, 24);
+            this.cmbOpcion.Size = new System.Drawing.Size(290, 24);
             this.cmbOpcion.TabIndex = 7;
             // 
             // cmbSubopcion
@@ -145,7 +145,7 @@
             this.cmbSubopcion.Location = new System.Drawing.Point(116, 174);
             this.cmbSubopcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSubopcion.Name = "cmbSubopcion";
-            this.cmbSubopcion.Size = new System.Drawing.Size(258, 24);
+            this.cmbSubopcion.Size = new System.Drawing.Size(290, 24);
             this.cmbSubopcion.TabIndex = 8;
             // 
             // label7
@@ -173,7 +173,7 @@
             this.gbValidaciones.Controls.Add(this.gbValidacion1);
             this.gbValidaciones.Controls.Add(this.btnValidarRespuestas);
             this.gbValidaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbValidaciones.Location = new System.Drawing.Point(395, 53);
+            this.gbValidaciones.Location = new System.Drawing.Point(434, 53);
             this.gbValidaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbValidaciones.Name = "gbValidaciones";
             this.gbValidaciones.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -354,10 +354,10 @@
             // btnValidarRespuestas
             // 
             this.btnValidarRespuestas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidarRespuestas.Location = new System.Drawing.Point(225, 364);
+            this.btnValidarRespuestas.Location = new System.Drawing.Point(195, 364);
             this.btnValidarRespuestas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnValidarRespuestas.Name = "btnValidarRespuestas";
-            this.btnValidarRespuestas.Size = new System.Drawing.Size(157, 47);
+            this.btnValidarRespuestas.Size = new System.Drawing.Size(187, 47);
             this.btnValidarRespuestas.TabIndex = 14;
             this.btnValidarRespuestas.Text = "Validar Información";
             this.btnValidarRespuestas.UseVisualStyleBackColor = true;
@@ -370,13 +370,13 @@
             this.cmbCategoria.Location = new System.Drawing.Point(117, 102);
             this.cmbCategoria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(257, 24);
+            this.cmbCategoria.Size = new System.Drawing.Size(289, 24);
             this.cmbCategoria.TabIndex = 32;
             // 
             // btnRegistrarRtaOperador
             // 
             this.btnRegistrarRtaOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(575, 138);
+            this.btnRegistrarRtaOperador.Location = new System.Drawing.Point(591, 138);
             this.btnRegistrarRtaOperador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistrarRtaOperador.Name = "btnRegistrarRtaOperador";
             this.btnRegistrarRtaOperador.Size = new System.Drawing.Size(187, 50);
@@ -409,7 +409,7 @@
             this.txtRespuestaOperador.Location = new System.Drawing.Point(15, 41);
             this.txtRespuestaOperador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRespuestaOperador.Name = "txtRespuestaOperador";
-            this.txtRespuestaOperador.Size = new System.Drawing.Size(747, 86);
+            this.txtRespuestaOperador.Size = new System.Drawing.Size(763, 86);
             this.txtRespuestaOperador.TabIndex = 43;
             this.txtRespuestaOperador.Text = "";
             // 
@@ -429,11 +429,11 @@
             this.gbRespuestaOperador.Controls.Add(this.label13);
             this.gbRespuestaOperador.Controls.Add(this.txtRespuestaOperador);
             this.gbRespuestaOperador.Controls.Add(this.label12);
-            this.gbRespuestaOperador.Location = new System.Drawing.Point(15, 481);
+            this.gbRespuestaOperador.Location = new System.Drawing.Point(38, 481);
             this.gbRespuestaOperador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbRespuestaOperador.Name = "gbRespuestaOperador";
             this.gbRespuestaOperador.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbRespuestaOperador.Size = new System.Drawing.Size(783, 207);
+            this.gbRespuestaOperador.Size = new System.Drawing.Size(799, 207);
             this.gbRespuestaOperador.TabIndex = 47;
             this.gbRespuestaOperador.TabStop = false;
             this.gbRespuestaOperador.Visible = false;
@@ -443,12 +443,13 @@
             this.btnColgarLlamada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnColgarLlamada.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnColgarLlamada.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnColgarLlamada.Location = new System.Drawing.Point(73, 225);
+            this.btnColgarLlamada.Location = new System.Drawing.Point(95, 233);
             this.btnColgarLlamada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnColgarLlamada.Name = "btnColgarLlamada";
-            this.btnColgarLlamada.Size = new System.Drawing.Size(278, 64);
+            this.btnColgarLlamada.Padding = new System.Windows.Forms.Padding(1);
+            this.btnColgarLlamada.Size = new System.Drawing.Size(234, 44);
             this.btnColgarLlamada.TabIndex = 48;
-            this.btnColgarLlamada.Text = "Colgar Llamada";
+            this.btnColgarLlamada.Text = "Cancelar Llamada";
             this.btnColgarLlamada.UseVisualStyleBackColor = true;
             this.btnColgarLlamada.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -457,7 +458,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(823, 710);
+            this.ClientSize = new System.Drawing.Size(871, 710);
             this.Controls.Add(this.btnColgarLlamada);
             this.Controls.Add(this.gbRespuestaOperador);
             this.Controls.Add(this.cmbCategoria);
@@ -469,7 +470,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblDatosLlamada);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PantallaRegistrarRtaOperador";
@@ -492,7 +493,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDatosLlamada;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

@@ -9,20 +9,20 @@ namespace PPAI_IVR.Clases
     public class Cliente
     {
         private int dni { get; set; }
-        private string nombreCliente { get; set; }
-        private int nroTelefono { get; set; }
+        private string nombreCompleto { get; set; }
+        //private int nroTelefono { get; set; }
         private List<InformacionCliente> informacion { get; set; }
 
         public Cliente(int dni, string nombre, List<InformacionCliente> infoCliente)
         {
             this.dni = dni;
-            this.nombreCliente = nombre;
+            this.nombreCompleto = nombre;
             this.informacion = infoCliente;
         }
 
         public string getNombre()
         {
-            return this.nombreCliente;
+            return this.nombreCompleto;
         }
 
         

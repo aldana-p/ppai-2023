@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PPAI_IVR.Clases
 {
-    public class Categoria
+    public class CategoriaLlamada
     {
-        private string mensajeOpciones { get; set; }
+        //private string mensajeOpciones { get; set; }
         private string nombre { get; set; }
         private int nroOrden { get; set; }
-        private List<Opcion> opcion { get; set; }
+        private List<OpcionLlamada> opcion { get; set; }
 
-        public Categoria(string nombre, int nroOrden, List<Opcion> opciones)
+        public CategoriaLlamada(string nombre, int nroOrden, List<OpcionLlamada> opciones)
         {
             this.nombre = nombre;
             this.nroOrden = nroOrden;
@@ -25,7 +25,7 @@ namespace PPAI_IVR.Clases
             return nombre;
         }
 
-        public string[] mostrarDatosCategoriaOpcionSubopcion(Opcion opcionSeleccionada, Subopcion subopcion)
+        public string[] mostrarDatosCategoriaOpcionSubopcion(OpcionLlamada opcionSeleccionada, SubopcionLlamada subopcion)
         {
             string nombreCategoria = this.getNombre();
             string[] opcionSubopcion = opcionSeleccionada.mostrarOpcionSubopcion(subopcion);

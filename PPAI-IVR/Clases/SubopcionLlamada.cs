@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PPAI_IVR.Clases
 {
-    public class Subopcion
+    public class SubopcionLlamada
     {
         private string nombre { get; set; }
         private int nroOrden { get; set; }
@@ -16,7 +16,7 @@ namespace PPAI_IVR.Clases
         public string Nombre { get => nombre; set => nombre = value; }
         public List<Validacion> ValidacionesRequeridas { get => validacionesRequeridas; set => validacionesRequeridas = value; }
 
-        public Subopcion(string nombre, int nroOrden, List<Validacion> validacionesRequeridas)
+        public SubopcionLlamada(string nombre, int nroOrden, List<Validacion> validacionesRequeridas)
         {
             this.nombre = nombre;
             this.nroOrden = nroOrden;

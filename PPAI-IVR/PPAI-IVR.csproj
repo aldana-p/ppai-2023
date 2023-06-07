@@ -49,44 +49,42 @@
   <ItemGroup>
     <Compile Include="Clases\Accion.cs" />
     <Compile Include="Clases\CambioEstado.cs" />
-    <Compile Include="Clases\Categoria.cs" />
+    <Compile Include="Clases\CategoriaLlamada.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Estado.cs" />
-    <Compile Include="Clases\GestorRegistrarRtaOperador.cs" />
+    <Compile Include="Controlador\GestorRegistrarRtaOperador.cs" />
     <Compile Include="Clases\InformacionCliente.cs" />
     <Compile Include="Clases\Llamada.cs" />
-    <Compile Include="Clases\Opcion.cs" />
-    <Compile Include="Clases\OpcionValidacion.cs" />
-    <Compile Include="Clases\Subopcion.cs" />
-    <Compile Include="Clases\TipoInformacion.cs" />
-    <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Clases\OpcionLlamada.cs" />
+    <Compile Include="Clases\SubopcionLlamada.cs" />
     <Compile Include="Clases\Validacion.cs" />
     <Compile Include="Datos\DatosCreados.cs" />
-    <Compile Include="Pantalla\PantallaRegistrarRtaOperador.cs">
+    <Compile Include="Interfaz\PantallaRegistrarRtaOperador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pantalla\PantallaRegistrarRtaOperador.Designer.cs">
+    <Compile Include="Interfaz\PantallaRegistrarRtaOperador.Designer.cs">
       <DependentUpon>PantallaRegistrarRtaOperador.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Pantalla\PantallaRegistrarRtaOperador.resx">
+    <EmbeddedResource Include="Interfaz\PantallaRegistrarRtaOperador.resx">
       <DependentUpon>PantallaRegistrarRtaOperador.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -97,5 +95,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\9111090_call_no_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\call_no_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

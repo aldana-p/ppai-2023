@@ -8,17 +8,14 @@ namespace PPAI_IVR.Clases
 {
     public class Validacion
     {
-        private string mensajeValidacion { get; set; }//hace falta? es audio
+        //private string mensajeValidacion { get; set; }//hace falta? es audio
         private string nombre { get; set; }
-        private List<OpcionValidacion> opcionesValidacion { get; set; }
-        private TipoInformacion tipo { get; set; }
+        //private List<OpcionValidacion> opcionesValidacion { get; set; }
+        //private TipoInformacion tipo { get; set; }
 
-        public Validacion(string mensajeValidacion, string nombre, List<OpcionValidacion> opcionesValidacion, TipoInformacion tipo)
+        public Validacion(string nombre)
         {
-            this.mensajeValidacion = mensajeValidacion;
             this.nombre = nombre;
-            this.opcionesValidacion = opcionesValidacion;
-            this.tipo = tipo;
         }   
 
         public string getValidacion()

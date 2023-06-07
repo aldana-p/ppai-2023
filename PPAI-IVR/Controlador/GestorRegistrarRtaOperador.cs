@@ -12,9 +12,9 @@ namespace PPAI_IVR.Clases
     public class GestorRegistrarRtaOperador
     {
         private Llamada llamada { get; set; }
-        private Opcion opcion { get; set; }
-        private Categoria categoria { get; set; }
-        private Subopcion subopcion { get; set; }
+        private OpcionLlamada opcion { get; set; }
+        private CategoriaLlamada categoria { get; set; }
+        private SubopcionLlamada subopcion { get; set; }
         private Cliente cliente { get; set; }
         private Estado estadoEnCurso { get; set; }
         private Estado estadoFinalizada { get; set; }
@@ -30,7 +30,7 @@ namespace PPAI_IVR.Clases
 
 
 
-        public GestorRegistrarRtaOperador(Llamada llamada, Categoria categoria, List<Estado> estados, List<Accion> acciones)
+        public GestorRegistrarRtaOperador(Llamada llamada, CategoriaLlamada categoria, List<Estado> estados, List<Accion> acciones)
         {
             this.llamada = llamada;
             this.opcion = llamada.OpcionSeleccionada;

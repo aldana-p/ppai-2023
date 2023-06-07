@@ -11,33 +11,32 @@ namespace PPAI_IVR.Clases
     public class Llamada
     {
         private string descripcionOperador { get; set; }
-        private string detalleAccionRequerida { get; set; }
+        // private string detalleAccionRequerida { get; set; }
         private TimeSpan duracion { get; set; } 
-        private bool encuestaEnviada { get; set; } // revisar si es bool
-        private string observacionAuditor { get; set; }
+        // private bool encuestaEnviada { get; set; } // revisar si es bool
+        // private string observacionAuditor { get; set; }
         private Accion accionRequerida { get; set; }
         private Cliente cliente { get; set; }
-        private Usuario operador { get; set; } //son necesarios el operador, el auditor, y la respuestaDeEncuesta?
-        private Usuario auditor { get; set; }
-        private Opcion opcionSeleccionada { get; set; }
-        private Subopcion subopcionSeleccionada { get; set; }
+        //private Usuario operador { get; set; } //son necesarios el operador, el auditor, y la respuestaDeEncuesta?
+        // private Usuario auditor { get; set; }
+        private OpcionLlamada opcionSeleccionada { get; set; }
+        private SubopcionLlamada subopcionSeleccionada { get; set; }
         private List<CambioEstado> cambioEstado { get; set; }
 
         public string DescripcionOperador { get => descripcionOperador; set => descripcionOperador = value; }
         public TimeSpan Duracion { get => duracion; set => duracion = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
-        public Opcion OpcionSeleccionada { get => opcionSeleccionada; set => opcionSeleccionada = value; }
-        public Subopcion SubopcionSeleccionada { get => subopcionSeleccionada; set => subopcionSeleccionada = value;  }
+        public OpcionLlamada OpcionSeleccionada { get => opcionSeleccionada; set => opcionSeleccionada = value; }
+        public SubopcionLlamada SubopcionSeleccionada { get => subopcionSeleccionada; set => subopcionSeleccionada = value;  }
         public List<CambioEstado> CambioEstado { get => cambioEstado; set => cambioEstado = value; }
 
 
 
-        public Llamada(string descripcionOperador, Accion accionRequerida, Cliente cliente, Usuario operador, Opcion opcionSeleccionada, Subopcion subopcionSeleccionada, List<CambioEstado> cambioEstado)
+        public Llamada(string descripcionOperador, Accion accionRequerida, Cliente cliente, OpcionLlamada opcionSeleccionada, SubopcionLlamada subopcionSeleccionada, List<CambioEstado> cambioEstado)
         {
             this.descripcionOperador = descripcionOperador;
             this.accionRequerida = accionRequerida;
             this.cliente = cliente;
-            this.operador = operador;
             this.opcionSeleccionada = opcionSeleccionada;
             this.subopcionSeleccionada = subopcionSeleccionada;
             this.cambioEstado = cambioEstado;

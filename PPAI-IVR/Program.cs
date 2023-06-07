@@ -21,7 +21,7 @@ namespace PPAI_IVR
             Application.SetCompatibleTextRenderingDefault(false);
 
             DatosCreados datos = new DatosCreados();
-            Llamada llamadaSeleccionada = new Llamada("", null, datos.clientes[0], datos.operador, datos.opciones[0], datos.opciones[0].Subopcion[2], datos.cambiosEstado);
+            Llamada llamadaSeleccionada = new Llamada("", null, datos.clientes[0], datos.opciones[0], datos.opciones[0].Subopcion[2], datos.cambiosEstado);
 
 
             GestorRegistrarRtaOperador gestor = new GestorRegistrarRtaOperador(llamadaSeleccionada, datos.categorias[0], datos.estados, datos.acciones);

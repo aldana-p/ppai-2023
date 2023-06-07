@@ -13,10 +13,9 @@ namespace PPAI_IVR.Datos
         public List<Accion> acciones;
         public List<Estado> estados;
         public List<Cliente> clientes;
-        public List<Opcion> opciones;
-        public List<Categoria> categorias;
+        public List<OpcionLlamada> opciones;
+        public List<CategoriaLlamada> categorias;
         public List<CambioEstado> cambiosEstado;
-        public Usuario operador;
 
         public DatosCreados()
         {
@@ -44,7 +43,7 @@ namespace PPAI_IVR.Datos
 
             this.estados = estados;
 
-            InformacionCliente infoCliente1 = new InformacionCliente("21/03/2002");
+            InformacionCliente infoCliente1 = new InformacionCliente("10/10/2000");
             InformacionCliente infoCliente2= new InformacionCliente("5012");
             InformacionCliente infoCliente3 = new InformacionCliente("0");
             List<InformacionCliente> informaciones = new List<InformacionCliente>();
@@ -53,14 +52,14 @@ namespace PPAI_IVR.Datos
             informaciones.Add(infoCliente3);
 
             //Creacion Clientes
-            Cliente cliente1 = new Cliente(123123, "Aldana", informaciones);
-            //Cliente cliente2 = new Cliente(456456, "Virginia");
+            Cliente cliente1 = new Cliente(123123, "Gómez Juan", informaciones);
             List<Cliente> clientes = new List<Cliente>();
             clientes.Add(cliente1);
-            //clientes.Add(cliente2);
 
             this.clientes = clientes;
 
+
+            /*
             //Crear tipos informacion
             TipoInformacion tipoInfo1 = new TipoInformacion("fechaNacimiento");
             TipoInformacion tipoInfo2 = new TipoInformacion("codPostal");
@@ -71,7 +70,7 @@ namespace PPAI_IVR.Datos
             tiposInfo.Add(tipoInfo3);
 
             //Opciones Validacion  (no es necesario)
-
+            
             OpcionValidacion opVal1 = new OpcionValidacion(true, "3/10/89");
             OpcionValidacion opVal2 = new OpcionValidacion(false, "12/5/89");
             OpcionValidacion opVal3 = new OpcionValidacion(false, "5/8/89");
@@ -87,9 +86,11 @@ namespace PPAI_IVR.Datos
             listaOpVal2.Add(opVal4);
             listaOpVal2.Add(opVal5);
             listaOpVal2.Add(opVal6);
+            */
 
-            Validacion val1 = new Validacion("", "Validar fecha nacimiento", listaOpVal1, tipoInfo1);
-            Validacion val2 = new Validacion("", "Validar código postal", listaOpVal2, tipoInfo2);
+
+            Validacion val1 = new Validacion("Validar fecha nacimiento");
+            Validacion val2 = new Validacion("Validar código postal");
             List<Validacion> listaValidacion1 = new List<Validacion>();
             listaValidacion1.Add(val1);
             listaValidacion1.Add(val2);
@@ -98,19 +99,19 @@ namespace PPAI_IVR.Datos
             listaValidacion2.Add(val1);
 
             //Creacion subopciones
-            Subopcion subop1 = new Subopcion("Cuenta con los datos de la tarjeta", 1, listaValidacion1);
-            Subopcion subop2 = new Subopcion("No cuenta con los datos de la tarjeta", 2, listaValidacion1);
-            Subopcion subop3 = new Subopcion("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
-            List<Subopcion> listaSubop1 = new List<Subopcion>();
+            SubopcionLlamada subop1 = new SubopcionLlamada("Cuenta con los datos de la tarjeta", 1, listaValidacion1);
+            SubopcionLlamada subop2 = new SubopcionLlamada("No cuenta con los datos de la tarjeta", 2, listaValidacion1);
+            SubopcionLlamada subop3 = new SubopcionLlamada("Comunicarse con responsable de atención al cliente", 3, listaValidacion1);
+            List<SubopcionLlamada> listaSubop1 = new List<SubopcionLlamada>();
             listaSubop1.Add(subop1);
             listaSubop1.Add(subop2);
             listaSubop1.Add(subop3);
 
             //Creacion opciones
-            Opcion op1 = new Opcion("Informar robo y solicitar nueva tarjeta", 1, listaSubop1);
-            Opcion op2 = new Opcion("Informar robo y anular tarjeta", 2, listaSubop1);
-            Opcion op3 = new Opcion("Finalizar llamada", 3, listaSubop1);
-            List<Opcion> listaOp1 = new List<Opcion>();
+            OpcionLlamada op1 = new OpcionLlamada("Informar robo y solicitar nueva tarjeta", 1, listaSubop1);
+            OpcionLlamada op2 = new OpcionLlamada("Informar robo y anular tarjeta", 2, listaSubop1);
+            OpcionLlamada op3 = new OpcionLlamada("Finalizar llamada", 3, listaSubop1);
+            List<OpcionLlamada> listaOp1 = new List<OpcionLlamada>();
             listaOp1.Add(op1);
             listaOp1.Add(op2);
             listaOp1.Add(op3);
@@ -118,9 +119,9 @@ namespace PPAI_IVR.Datos
             this.opciones = listaOp1;
 
             //Creacion categorias
-            Categoria cat1 = new Categoria("Informar robo", 1, listaOp1);
-            Categoria cat2 = new Categoria("Tarjeta bloqueada", 2, listaOp1);
-            List<Categoria> categorias = new List<Categoria>();
+            CategoriaLlamada cat1 = new CategoriaLlamada("Informar robo", 1, listaOp1);
+            CategoriaLlamada cat2 = new CategoriaLlamada("Tarjeta bloqueada", 2, listaOp1);
+            List<CategoriaLlamada> categorias = new List<CategoriaLlamada>();
             categorias.Add(cat1);
             categorias.Add(cat2);
   
@@ -134,7 +135,6 @@ namespace PPAI_IVR.Datos
 
             this.cambiosEstado = listaCambiosEstado;
 
-            Usuario operador = new Usuario("NombreOperador");
         }
     }
 }
