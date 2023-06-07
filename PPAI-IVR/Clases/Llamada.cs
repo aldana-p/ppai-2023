@@ -75,9 +75,12 @@ namespace PPAI_IVR.Clases
             descripcionOperador = descripcion;
         }
 
-        public void calcularDuracion(DateTime horaInicio, DateTime horaFin)
+        public void calcularDuracion()
         {
-            duracion = horaFin.Subtract(horaInicio);
+            DateTime horaPrimero = this.cambioEstado.ElementAt(1).FechaHoraInicio;
+            DateTime horaUltimo = this.cambioEstado.ElementAt(2).FechaHoraInicio;
+         
+            duracion = horaUltimo.Subtract(horaPrimero);
         }
 
         public void cancelarLlamada (DateTime fechaHoraActual, Estado estado)

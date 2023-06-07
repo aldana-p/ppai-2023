@@ -95,11 +95,5 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="Resources\9111090_call_no_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\call_no_icon.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

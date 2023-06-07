@@ -191,11 +191,7 @@ namespace PPAI_IVR.Clases
         {
             llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
             llamada.setDescripcionOperador(respuestaOperador);
-
-            CambioEstado primero = llamada.CambioEstado.ElementAt(1);
-
-            CambioEstado ultimo = llamada.CambioEstado.ElementAt(llamada.CambioEstado.Count - 1);
-            llamada.calcularDuracion(primero.FechaHoraInicio, ultimo.FechaHoraInicio);
+            llamada.calcularDuracion();
 
 
             // Prueba para mostrar que se crearon los cambios de estado, se seteo de la desc. del operador y la duración de la llamada.
@@ -209,7 +205,45 @@ namespace PPAI_IVR.Clases
                                               "\n Cantidad de cambios de estados: " + lista.Count.ToString());
             finCU();
         }
+        
+        public void buscarEstadoCancelada()
+        {
+            foreach (Estado estado in estados)
+            {
+                bool res = estado.esCancelado();
 
+                if (res)
+                {
+                    estadoCancelado = estado;
+                    break;
+                }
+            }
+
+            fechaHoraActual = obtenerFechaHoraActual();
+            actualizarEstadoLlamadaACancelado(estadoCancelado);
+        }
+
+        public void actualizarEstadoLlamadaACancelado(Estado nuevoEstado)
+        {
+            llamada.cancelarLlamada(fechaHoraActual, nuevoEstado);
+            List<CambioEstado> lista = llamada.CambioEstado;
+            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
+        }
+
+
+        public void finCU()
+        {
+            pantalla.Close();
+        }
+
+
+
+
+
+
+
+
+        /*
         public void buscarEstadoCancelado()
         {
             foreach (Estado estado in estados)
@@ -238,11 +272,7 @@ namespace PPAI_IVR.Clases
             Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
                           
         }
-
-        public void finCU()
-        {
-            pantalla.Close();
-        }
+        */
 
     }
 }

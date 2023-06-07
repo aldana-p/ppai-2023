@@ -58,37 +58,7 @@ namespace PPAI_IVR.Datos
 
             this.clientes = clientes;
 
-
-            /*
-            //Crear tipos informacion
-            TipoInformacion tipoInfo1 = new TipoInformacion("fechaNacimiento");
-            TipoInformacion tipoInfo2 = new TipoInformacion("codPostal");
-            TipoInformacion tipoInfo3 = new TipoInformacion("cantidadHijos");
-            List<TipoInformacion> tiposInfo = new List<TipoInformacion>();
-            tiposInfo.Add(tipoInfo1);
-            tiposInfo.Add(tipoInfo2);
-            tiposInfo.Add(tipoInfo3);
-
-            //Opciones Validacion  (no es necesario)
-            
-            OpcionValidacion opVal1 = new OpcionValidacion(true, "3/10/89");
-            OpcionValidacion opVal2 = new OpcionValidacion(false, "12/5/89");
-            OpcionValidacion opVal3 = new OpcionValidacion(false, "5/8/89");
-            List<OpcionValidacion> listaOpVal1 = new List<OpcionValidacion>();
-            listaOpVal1.Add(opVal1);
-            listaOpVal1.Add(opVal2);
-            listaOpVal1.Add(opVal3);
-
-            OpcionValidacion opVal4 = new OpcionValidacion(true, "5012");
-            OpcionValidacion opVal5 = new OpcionValidacion(false, "5000");
-            OpcionValidacion opVal6 = new OpcionValidacion(false, "5011");
-            List<OpcionValidacion> listaOpVal2 = new List<OpcionValidacion>();
-            listaOpVal2.Add(opVal4);
-            listaOpVal2.Add(opVal5);
-            listaOpVal2.Add(opVal6);
-            */
-
-
+            // Creación validaciones
             Validacion val1 = new Validacion("Validar fecha nacimiento");
             Validacion val2 = new Validacion("Validar código postal");
             List<Validacion> listaValidacion1 = new List<Validacion>();

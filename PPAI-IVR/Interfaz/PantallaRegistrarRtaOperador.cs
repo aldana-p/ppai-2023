@@ -216,7 +216,8 @@ namespace PPAI_IVR
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gestor.cancelarLlamada();
+            //gestor.cancelarLlamada();
+            gestor.buscarEstadoCancelada();
             DialogResult result = MessageBox.Show("La llamada fue colgada por el cliente", "AVISO", MessageBoxButtons.OK);
             this.Close();
         }
