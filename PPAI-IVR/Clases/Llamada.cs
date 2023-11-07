@@ -11,14 +11,9 @@ namespace PPAI_IVR.Clases
     public class Llamada
     {
         private string descripcionOperador { get; set; }
-        // private string detalleAccionRequerida { get; set; }
         private TimeSpan duracion { get; set; } 
-        // private bool encuestaEnviada { get; set; } // revisar si es bool
-        // private string observacionAuditor { get; set; }
         private Accion accionRequerida { get; set; }
         private Cliente cliente { get; set; }
-        //private Usuario operador { get; set; } //son necesarios el operador, el auditor, y la respuestaDeEncuesta?
-        // private Usuario auditor { get; set; }
         private OpcionLlamada opcionSeleccionada { get; set; }
         private SubopcionLlamada subopcionSeleccionada { get; set; }
         private List<CambioEstado> cambioEstado { get; set; }
@@ -77,6 +72,7 @@ namespace PPAI_IVR.Clases
 
         public void calcularDuracion()
         {
+            // CORREGIR, DEBE HACERSE CON EL ESTADO EN SI NO CON LA POSICIÓN
             DateTime horaPrimero = this.cambioEstado.ElementAt(1).FechaHoraInicio;
             DateTime horaUltimo = this.cambioEstado.ElementAt(2).FechaHoraInicio;
          

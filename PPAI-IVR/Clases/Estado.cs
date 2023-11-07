@@ -13,7 +13,7 @@ namespace PPAI_IVR.Clases
 
         public string Nombre { get => nombre; set => nombre = value; }
 
-        public Estado(string nombre) //Podría usarse directamente el set ?? 
+        public Estado(string nombre) 
         {
             this.nombre = nombre;
         }

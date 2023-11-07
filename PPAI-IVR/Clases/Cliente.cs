@@ -10,7 +10,6 @@ namespace PPAI_IVR.Clases
     {
         private int dni { get; set; }
         private string nombreCompleto { get; set; }
-        //private int nroTelefono { get; set; }
         private List<InformacionCliente> informacion { get; set; }
 
         public Cliente(int dni, string nombre, List<InformacionCliente> infoCliente)

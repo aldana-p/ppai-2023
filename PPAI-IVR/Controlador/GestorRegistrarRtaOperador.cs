@@ -41,10 +41,6 @@ namespace PPAI_IVR.Clases
             this.estados = estados;
             this.acciones = acciones;
         }
-        public GestorRegistrarRtaOperador(Llamada llamada)
-        {
-            this.llamada = llamada;
-        }
 
         public void registrarRespuestaOperador()
         {
@@ -98,7 +94,6 @@ namespace PPAI_IVR.Clases
             string[] categoriaOpcionSubopcion = this.categoria.mostrarDatosCategoriaOpcionSubopcion(seleccionadaLlamada.OpcionSeleccionada, seleccionadaLlamada.SubopcionSeleccionada);
 
             buscarValidaciones(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
-            //pantalla.mostrarDatosLlamada(categoriaOpcionSubopcion, nombreCliente, seleccionadaLlamada);
         }
 
         // Método que busca los nombres de las validaciones a realizar
@@ -167,7 +162,7 @@ namespace PPAI_IVR.Clases
         public bool llamarCU28RegistrarAccion()
         {
             MessageBox.Show("¡El CU 28:Registrar acción requerida se ejecutó con éxito!");
-            return true;    // RESOLVER ALTERNATIVA A3 !!!!!!
+            return true;  
 
         }
 
@@ -236,43 +231,6 @@ namespace PPAI_IVR.Clases
             pantalla.Close();
         }
 
-
-
-
-
-
-
-
-        /*
-        public void buscarEstadoCancelado()
-        {
-            foreach (Estado estado in estados)
-            {
-                bool res = estado.esCancelado();
-                if (res)
-                {
-                    estadoCancelado = estado;
-                    break;
-                }
-            }
-        }
-
-        public void actualizarEstadoLlamadaACancelado(Estado nuevoEstado)
-        {
-            llamada.cancelarLlamada(fechaHoraActual, nuevoEstado);
-            llamada.setDescripcionOperador(respuestaOperador);
-        }
-
-        public void cancelarLlamada()
-        {
-            buscarEstadoCancelado();
-            fechaHoraActual = obtenerFechaHoraActual();
-            actualizarEstadoLlamadaACancelado(estadoCancelado);
-            List<CambioEstado> lista = llamada.CambioEstado;
-            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
-                          
-        }
-        */
 
     }
 }
