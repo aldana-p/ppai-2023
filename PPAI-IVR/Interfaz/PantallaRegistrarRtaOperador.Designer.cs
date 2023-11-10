@@ -126,7 +126,7 @@
             this.txtNombreCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(290, 22);
-            this.txtNombreCliente.TabIndex = 5;
+            this.txtNombreCliente.TabIndex = 1;
             // 
             // cmbOpcion
             // 
@@ -136,7 +136,7 @@
             this.cmbOpcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbOpcion.Name = "cmbOpcion";
             this.cmbOpcion.Size = new System.Drawing.Size(290, 24);
-            this.cmbOpcion.TabIndex = 7;
+            this.cmbOpcion.TabIndex = 3;
             // 
             // cmbSubopcion
             // 
@@ -146,7 +146,7 @@
             this.cmbSubopcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSubopcion.Name = "cmbSubopcion";
             this.cmbSubopcion.Size = new System.Drawing.Size(290, 24);
-            this.cmbSubopcion.TabIndex = 8;
+            this.cmbSubopcion.TabIndex = 4;
             // 
             // label7
             // 
@@ -164,7 +164,7 @@
             this.txtValidacion1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValidacion1.Name = "txtValidacion1";
             this.txtValidacion1.Size = new System.Drawing.Size(223, 22);
-            this.txtValidacion1.TabIndex = 12;
+            this.txtValidacion1.TabIndex = 6;
             // 
             // gbValidaciones
             // 
@@ -215,7 +215,7 @@
             this.txtRtaValidacion3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRtaValidacion3.Name = "txtRtaValidacion3";
             this.txtRtaValidacion3.Size = new System.Drawing.Size(223, 22);
-            this.txtRtaValidacion3.TabIndex = 35;
+            this.txtRtaValidacion3.TabIndex = 2;
             // 
             // lblRta3
             // 
@@ -277,7 +277,7 @@
             this.txtRtaValidacion2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRtaValidacion2.Name = "txtRtaValidacion2";
             this.txtRtaValidacion2.Size = new System.Drawing.Size(223, 22);
-            this.txtRtaValidacion2.TabIndex = 35;
+            this.txtRtaValidacion2.TabIndex = 1;
             // 
             // lblRta2
             // 
@@ -339,7 +339,7 @@
             this.txtRtaValidacion1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRtaValidacion1.Name = "txtRtaValidacion1";
             this.txtRtaValidacion1.Size = new System.Drawing.Size(223, 22);
-            this.txtRtaValidacion1.TabIndex = 34;
+            this.txtRtaValidacion1.TabIndex = 7;
             // 
             // lblRta1
             // 
@@ -358,7 +358,7 @@
             this.btnValidarRespuestas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnValidarRespuestas.Name = "btnValidarRespuestas";
             this.btnValidarRespuestas.Size = new System.Drawing.Size(187, 47);
-            this.btnValidarRespuestas.TabIndex = 14;
+            this.btnValidarRespuestas.TabIndex = 3;
             this.btnValidarRespuestas.Text = "Validar Información";
             this.btnValidarRespuestas.UseVisualStyleBackColor = true;
             this.btnValidarRespuestas.Click += new System.EventHandler(this.tomarRespuestas);
@@ -371,7 +371,7 @@
             this.cmbCategoria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(289, 24);
-            this.cmbCategoria.TabIndex = 32;
+            this.cmbCategoria.TabIndex = 2;
             // 
             // btnRegistrarRtaOperador
             // 
@@ -380,7 +380,7 @@
             this.btnRegistrarRtaOperador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistrarRtaOperador.Name = "btnRegistrarRtaOperador";
             this.btnRegistrarRtaOperador.Size = new System.Drawing.Size(187, 50);
-            this.btnRegistrarRtaOperador.TabIndex = 46;
+            this.btnRegistrarRtaOperador.TabIndex = 6;
             this.btnRegistrarRtaOperador.Text = "Registrar Respuesta";
             this.btnRegistrarRtaOperador.UseVisualStyleBackColor = true;
             this.btnRegistrarRtaOperador.Click += new System.EventHandler(this.btnRegistrarRtaOperador_Click);
@@ -393,7 +393,7 @@
             this.cmbAcciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbAcciones.Name = "cmbAcciones";
             this.cmbAcciones.Size = new System.Drawing.Size(321, 24);
-            this.cmbAcciones.TabIndex = 45;
+            this.cmbAcciones.TabIndex = 5;
             // 
             // label13
             // 
@@ -410,7 +410,7 @@
             this.txtRespuestaOperador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRespuestaOperador.Name = "txtRespuestaOperador";
             this.txtRespuestaOperador.Size = new System.Drawing.Size(763, 86);
-            this.txtRespuestaOperador.TabIndex = 43;
+            this.txtRespuestaOperador.TabIndex = 4;
             this.txtRespuestaOperador.Text = "";
             // 
             // label12
@@ -448,10 +448,9 @@
             this.btnColgarLlamada.Name = "btnColgarLlamada";
             this.btnColgarLlamada.Padding = new System.Windows.Forms.Padding(1);
             this.btnColgarLlamada.Size = new System.Drawing.Size(234, 44);
-            this.btnColgarLlamada.TabIndex = 48;
+            this.btnColgarLlamada.TabIndex = 5;
             this.btnColgarLlamada.Text = "Cancelar Llamada";
             this.btnColgarLlamada.UseVisualStyleBackColor = true;
-            this.btnColgarLlamada.Click += new System.EventHandler(this.button1_Click);
             // 
             // PantallaRegistrarRtaOperador
             // 

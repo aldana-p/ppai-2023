@@ -19,7 +19,7 @@ namespace PPAI_IVR.Clases
         private Estado estadoEnCurso { get; set; }
         private Estado estadoFinalizada { get; set; }
         private Estado estadoCancelado { get; set; }
-        private List<Estado> estados { get; set; }
+        //private List<Estado> estados { get; set; }
         private DateTime fechaHoraActual { get; set; }
         private PantallaRegistrarRtaOperador pantalla { get; set; }
         private List<Accion> acciones { get; set; }
@@ -30,7 +30,7 @@ namespace PPAI_IVR.Clases
 
 
 
-        public GestorRegistrarRtaOperador(Llamada llamada, CategoriaLlamada categoria, List<Estado> estados, List<Accion> acciones)
+        public GestorRegistrarRtaOperador(Llamada llamada, CategoriaLlamada categoria, List<Accion> acciones)
         {
             this.llamada = llamada;
             this.opcion = llamada.OpcionSeleccionada;
@@ -38,7 +38,7 @@ namespace PPAI_IVR.Clases
             this.subopcion = llamada.SubopcionSeleccionada;
             this.cliente = llamada.Cliente;
             this.pantalla = new PantallaRegistrarRtaOperador(this);
-            this.estados = estados;
+            //this.estados = estados;
             this.acciones = acciones;
         }
 
@@ -49,29 +49,11 @@ namespace PPAI_IVR.Clases
 
         public void identificarOpcion(Llamada llamada)
         {
-            if (subopcion.Nombre == "Comunicarse con responsable de atención al cliente")
+            
+            if (subopcion.Nombre == "Comunicarse con atención al cliente")
             {
-                buscarEstadoEnCurso();
+                actualizarEstadoLlamadaAEnCurso(llamada);  //patrón
             }
-        }
-
-        // Método que busca el estado EnCurso para luego crear el cambio de estado.
-        public void buscarEstadoEnCurso()
-        {
-            foreach (Estado estado in estados)
-            {
-                bool res = estado.esEnCurso();
-
-                if (res)
-                {
-                    estadoEnCurso = estado;
-                    break;
-                }
-            }
-
-            fechaHoraActual = obtenerFechaHoraActual();
-            actualizarEstadoLlamadaAEnCurso(estadoEnCurso);
-
         }
 
         public DateTime obtenerFechaHoraActual()
@@ -80,11 +62,12 @@ namespace PPAI_IVR.Clases
 
         }
 
-        public void actualizarEstadoLlamadaAEnCurso(Estado nuevoEstado)
+        //patrón
+        public void actualizarEstadoLlamadaAEnCurso(Llamada llamada) 
         {
-            llamada.contestarLlamada(fechaHoraActual, nuevoEstado);
+            fechaHoraActual = obtenerFechaHoraActual();
+            llamada.contestarLlamada(fechaHoraActual);
             buscarDatosLlamada(llamada);
-
         }
 
         // Método que obtiene el nombre de la categoría, opción y subopción seleccionadas.
@@ -155,7 +138,10 @@ namespace PPAI_IVR.Clases
         {
             if (llamarCU28RegistrarAccion())
             {
-                buscarEstadoFinalizada();
+                //patron
+                llamada.finalizarLlamada(fechaHoraActual, respuestaOperador);
+                finCU();
+
             };
         }
 
@@ -166,41 +152,10 @@ namespace PPAI_IVR.Clases
 
         }
 
-        public void buscarEstadoFinalizada()
-        {
-            foreach (Estado estado in estados)
-            {
-                bool res = estado.esFinalizada();
-                if (res)
-                {
-                    estadoFinalizada = estado;
-                    break;
-                }
-            }
 
-            fechaHoraActual = obtenerFechaHoraActual();
-            actualizarEstadoLlamadaAFinalizada(estadoFinalizada);
-        }
+      
 
-        public void actualizarEstadoLlamadaAFinalizada(Estado nuevoEstado)
-        {
-            llamada.finalizarLlamada(fechaHoraActual, nuevoEstado);
-            llamada.setDescripcionOperador(respuestaOperador);
-            llamada.calcularDuracion();
-
-
-            // Prueba para mostrar que se crearon los cambios de estado, se seteo de la desc. del operador y la duración de la llamada.
-            List<CambioEstado> lista = llamada.CambioEstado;
-            MessageBox.Show(" Descripción operador: " + llamada.DescripcionOperador +
-                "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
-                "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
-
-            Console.WriteLine(" Descripción operador: " + llamada.DescripcionOperador +
-                               "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
-                                              "\n Cantidad de cambios de estados: " + lista.Count.ToString());
-            finCU();
-        }
-        
+        /*    VER CANCELACION
         public void buscarEstadoCancelada()
         {
             foreach (Estado estado in estados)
@@ -225,6 +180,8 @@ namespace PPAI_IVR.Clases
             Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
         }
 
+
+        */
 
         public void finCU()
         {

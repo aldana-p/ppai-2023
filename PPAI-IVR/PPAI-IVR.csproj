@@ -49,15 +49,20 @@
   <ItemGroup>
     <Compile Include="Clases\Accion.cs" />
     <Compile Include="Clases\CambioEstado.cs" />
+    <Compile Include="Clases\Cancelada.cs" />
     <Compile Include="Clases\CategoriaLlamada.cs" />
     <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\EnCurso.cs" />
     <Compile Include="Clases\Estado.cs" />
+    <Compile Include="Clases\Finalizada.cs" />
+    <Compile Include="Clases\Iniciada.cs" />
     <Compile Include="Controlador\GestorRegistrarRtaOperador.cs" />
     <Compile Include="Clases\InformacionCliente.cs" />
     <Compile Include="Clases\Llamada.cs" />
     <Compile Include="Clases\OpcionLlamada.cs" />
     <Compile Include="Clases\SubopcionLlamada.cs" />
     <Compile Include="Clases\Validacion.cs" />
+    <Compile Include="Datos\AccesoBD.cs" />
     <Compile Include="Datos\DatosCreados.cs" />
     <Compile Include="Interfaz\PantallaRegistrarRtaOperador.cs">
       <SubType>Form</SubType>

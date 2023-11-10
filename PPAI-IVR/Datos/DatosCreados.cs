@@ -31,15 +31,15 @@ namespace PPAI_IVR.Datos
             this.acciones = acciones;
 
             //Creacion estados
-            Estado estadoIniciada = new Estado("Iniciada");
-            Estado estadoEnCurso = new Estado("EnCurso");
-            Estado estadoFinalizada = new Estado("Finalizada");
-            Estado estadoCancelada = new Estado("Cancelado");
+            Estado estadoIniciada = new Iniciada("Iniciada");
+            Estado estadoEnCurso = new EnCurso("EnCurso");
+            Estado estadoFinalizada = new Finalizada("Finalizada");
+            //Estado estadoCancelada = new Cancelada("Cancelado");
             List<Estado> estados = new List<Estado>();
             estados.Add(estadoIniciada);
             estados.Add(estadoEnCurso);
             estados.Add(estadoFinalizada);
-            estados.Add(estadoCancelada);
+            //estados.Add(estadoCancelada);
 
             this.estados = estados;
 
@@ -96,15 +96,14 @@ namespace PPAI_IVR.Datos
             categorias.Add(cat2);
   
             this.categorias = categorias;
-                
+
             //Creacion Cambios Estado
             CambioEstado ce1 = new CambioEstado(DateTime.Now, estadoIniciada);
-
             List<CambioEstado> listaCambiosEstado = new List<CambioEstado>();
             listaCambiosEstado.Add(ce1);
 
             this.cambiosEstado = listaCambiosEstado;
-
+            
         }
     }
 }

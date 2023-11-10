@@ -18,6 +18,10 @@ namespace PPAI_IVR.Clases
         private SubopcionLlamada subopcionSeleccionada { get; set; }
         private List<CambioEstado> cambioEstado { get; set; }
 
+        //Estado actual
+        private Estado estadoActual;
+
+
         public string DescripcionOperador { get => descripcionOperador; set => descripcionOperador = value; }
         public TimeSpan Duracion { get => duracion; set => duracion = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
@@ -26,6 +30,7 @@ namespace PPAI_IVR.Clases
         public List<CambioEstado> CambioEstado { get => cambioEstado; set => cambioEstado = value; }
 
 
+        
 
         public Llamada(string descripcionOperador, Accion accionRequerida, Cliente cliente, OpcionLlamada opcionSeleccionada, SubopcionLlamada subopcionSeleccionada, List<CambioEstado> cambioEstado)
         {
@@ -35,19 +40,31 @@ namespace PPAI_IVR.Clases
             this.opcionSeleccionada = opcionSeleccionada;
             this.subopcionSeleccionada = subopcionSeleccionada;
             this.cambioEstado = cambioEstado;
+            this.estadoActual = cambioEstado.ElementAt(0).Estado;
         }
 
-        public void contestarLlamada(DateTime fechaHoraActual, Estado estado)
+
+        //patron
+        public void contestarLlamada(DateTime fechaHoraActual)
         {
-            crearNuevoCambioEstado(fechaHoraActual, estado);
+            estadoActual.contestarLlamada(fechaHoraActual, this);
         }
 
-        public void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado)
+
+        //patron
+        public void setEstadoActual(Estado estado)
         {
-            CambioEstado nuevoEstado = new CambioEstado(fechaHoraActual, estado);
-            cambioEstado.Add(nuevoEstado);
-            
+            estadoActual = estado;
         }
+        public void agregarCambioEstado(CambioEstado cambio)
+        {
+            cambioEstado.Add(cambio);
+        }
+        public void finalizarLlamada(DateTime fechaHoraActual, String respuestaOperador)
+        {
+            estadoActual.finalizarLlamada(fechaHoraActual, this, respuestaOperador);
+        }
+
 
         public string buscarDatosLlamada()
         {
@@ -59,12 +76,9 @@ namespace PPAI_IVR.Clases
         {
             return cliente.validarRespuestaCliente(respuesta);
         }
+        
 
-        public void finalizarLlamada(DateTime fechaHoraActual, Estado estado)
-        {
-            crearNuevoCambioEstado(fechaHoraActual, estado);
-        }
-
+        //patron
         public void setDescripcionOperador(string descripcion)
         {
             descripcionOperador = descripcion;
@@ -72,17 +86,28 @@ namespace PPAI_IVR.Clases
 
         public void calcularDuracion()
         {
-            // CORREGIR, DEBE HACERSE CON EL ESTADO EN SI NO CON LA POSICIÓN
-            DateTime horaPrimero = this.cambioEstado.ElementAt(1).FechaHoraInicio;
-            DateTime horaUltimo = this.cambioEstado.ElementAt(2).FechaHoraInicio;
-         
-            duracion = horaUltimo.Subtract(horaPrimero);
+            DateTime inicio = new DateTime();
+            DateTime fin = new DateTime();
+
+
+            //REVISAR POR QUË TIENE LA MISMA HORA
+            for (int i = 0; i < this.cambioEstado.Count ; i++)
+            {
+                if (cambioEstado.ElementAt(i).Estado.Nombre == "EnCurso") { inicio = cambioEstado.ElementAt(i).FechaHoraInicio; }
+                if (cambioEstado.ElementAt(i).Estado.Nombre == "Finalizada") { fin = cambioEstado.ElementAt(i).FechaHoraInicio; }
+            }
+            duracion = fin.Subtract(inicio);
+
         }
 
+
+
+
+        /*    CAMBIAR LA CANCELACION
         public void cancelarLlamada (DateTime fechaHoraActual, Estado estado)
         {
             crearNuevoCambioEstado(fechaHoraActual, estado);
         }
-
+        */
     }
 }
