@@ -24,28 +24,28 @@ namespace PPAI_IVR
 
             DataTable llamadas = AccesoBD.ObtenerLlamadas();       //Deberíamos buscarla por id para asegurarnos de sólo obtener 1????
 
-            DateTime datetime = new DateTime();    // VER CÓMO CORREGIR LA CONVERSIÓN DE DATETIME DE LA BD A DATETIME DE C#
+            
             DataTable cambiosEstado = AccesoBD.ObtenerCambiosEstados(int.Parse(llamadas.Rows[0]["idLlamada"].ToString()));
             List<CambioEstado> ce = new List<CambioEstado>();
             for (int i = 0; i < cambiosEstado.Rows.Count; i++)
             {
                 if (cambiosEstado.Rows[i]["nombre"].ToString() == "Iniciada")
                 {
-                    Estado estado = new Iniciada("Iniciada");
-                    //CambioEstado iniciadaCE = new CambioEstado(DateTime.ParseExact("cambiosEstado.Rows[i][\"fechaHoraInicia\"].ToString()", "dd/MM/yy hh:mm:ss.sss", null), estado);
-                    //CambioEstado iniciadaCE = new CambioEstado(cambiosEstado.Rows[i]["fechaHoraInicia"].GetDateTime(), estado);
-                    CambioEstado iniciadaCE = new CambioEstado(datetime, estado);
+                    Estado estado = new Iniciada("Iniciada", 1);
+                    CambioEstado iniciadaCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
+                    
                     ce.Add(iniciadaCE);
                 }
+                // corregir conversión para el resto de estados
                 if (cambiosEstado.Rows[i]["nombre"].ToString() == "EnCurso")
                 {
-                    Estado estado = new EnCurso("EnCurso");
+                    Estado estado = new EnCurso("EnCurso", 2);
                     CambioEstado enCursoCE = new CambioEstado(DateTime.ParseExact("cambiosEstado.Rows[i][\"fechaHoraInicia\"].ToString()", "dd/MM/yy hh:F", null), estado);
                     ce.Add(enCursoCE);
                 }
                 if (cambiosEstado.Rows[i]["nombre"].ToString() == "Finalizada")
                 {
-                    Estado estado = new Finalizada("Finalizada");
+                    Estado estado = new Finalizada("Finalizada", 3);
                     CambioEstado finalizadaCE = new CambioEstado(DateTime.ParseExact("cambiosEstado.Rows[i][\"fechaHoraInicia\"].ToString()", "dd/MM/yy hh:F", null), estado);
                     ce.Add(finalizadaCE);
                 }
@@ -88,7 +88,7 @@ namespace PPAI_IVR
             Cliente cliente = new Cliente(int.Parse(llamadas.Rows[0]["dniCliente"].ToString()), llamadas.Rows[0]["nombreCompleto"].ToString(), infos);
 
 
-            Llamada llamadaSeleccionada = new Llamada("", null, cliente, opcionSeleccionada, subopcionSeleccionada, ce);
+            Llamada llamadaSeleccionada = new Llamada(int.Parse(llamadas.Rows[0]["idLlamada"].ToString()),"", null, cliente, opcionSeleccionada, subopcionSeleccionada, ce);
 
 
             DataTable dtOpciones = AccesoBD.ObtenerOpciones(int.Parse(llamadas.Rows[0]["nroCategoria"].ToString()));

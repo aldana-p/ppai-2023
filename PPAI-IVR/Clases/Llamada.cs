@@ -10,6 +10,7 @@ namespace PPAI_IVR.Clases
 {
     public class Llamada
     {
+        private int idLlamada { get; set; }
         private string descripcionOperador { get; set; }
         private TimeSpan duracion { get; set; } 
         private Accion accionRequerida { get; set; }
@@ -21,7 +22,7 @@ namespace PPAI_IVR.Clases
         //Estado actual
         private Estado estadoActual;
 
-
+        public int IdLlamada { get => idLlamada; set => idLlamada = value; }
         public string DescripcionOperador { get => descripcionOperador; set => descripcionOperador = value; }
         public TimeSpan Duracion { get => duracion; set => duracion = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
@@ -32,8 +33,9 @@ namespace PPAI_IVR.Clases
 
         
 
-        public Llamada(string descripcionOperador, Accion accionRequerida, Cliente cliente, OpcionLlamada opcionSeleccionada, SubopcionLlamada subopcionSeleccionada, List<CambioEstado> cambioEstado)
+        public Llamada(int id, string descripcionOperador, Accion accionRequerida, Cliente cliente, OpcionLlamada opcionSeleccionada, SubopcionLlamada subopcionSeleccionada, List<CambioEstado> cambioEstado)
         {
+            this.idLlamada = id;
             this.descripcionOperador = descripcionOperador;
             this.accionRequerida = accionRequerida;
             this.cliente = cliente;
@@ -47,7 +49,7 @@ namespace PPAI_IVR.Clases
         //patron
         public void contestarLlamada(DateTime fechaHoraActual)
         {
-            estadoActual.contestarLlamada(fechaHoraActual, this);
+            estadoActual.contestarLlamada(fechaHoraActual, this, true);
         }
 
 
@@ -60,9 +62,9 @@ namespace PPAI_IVR.Clases
         {
             cambioEstado.Add(cambio);
         }
-        public void finalizarLlamada(DateTime fechaHoraActual, String respuestaOperador)
+        public void finalizarLlamada(DateTime fechaHoraActual, String respuestaOperador, bool conf)
         {
-            estadoActual.finalizarLlamada(fechaHoraActual, this, respuestaOperador);
+            estadoActual.finalizarLlamada(fechaHoraActual, this, respuestaOperador, conf);
         }
 
 
@@ -83,25 +85,11 @@ namespace PPAI_IVR.Clases
         {
             descripcionOperador = descripcion;
         }
-
-        public void calcularDuracion()
+        //patron
+        public void setDuracion(TimeSpan duracionLlamada)
         {
-            DateTime inicio = new DateTime();
-            DateTime fin = new DateTime();
-
-
-            //REVISAR POR QUË TIENE LA MISMA HORA
-            for (int i = 0; i < this.cambioEstado.Count ; i++)
-            {
-                if (cambioEstado.ElementAt(i).Estado.Nombre == "EnCurso") { inicio = cambioEstado.ElementAt(i).FechaHoraInicio; }
-                if (cambioEstado.ElementAt(i).Estado.Nombre == "Finalizada") { fin = cambioEstado.ElementAt(i).FechaHoraInicio; }
-            }
-            duracion = fin.Subtract(inicio);
-
+            duracion = duracionLlamada;
         }
-
-
-
 
         /*    CAMBIAR LA CANCELACION
         public void cancelarLlamada (DateTime fechaHoraActual, Estado estado)
@@ -109,5 +97,9 @@ namespace PPAI_IVR.Clases
             crearNuevoCambioEstado(fechaHoraActual, estado);
         }
         */
+        public void cancelarLlamada(DateTime fechaHoraActual, bool conf)
+        {
+            estadoActual.cancelarLlamada(fechaHoraActual, this, conf);
+        }
     }
 }

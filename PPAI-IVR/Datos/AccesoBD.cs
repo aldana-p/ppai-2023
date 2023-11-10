@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PPAI_IVR.Clases;
 
 namespace PPAI_IVR.Datos
 {
@@ -285,6 +286,71 @@ namespace PPAI_IVR.Datos
 
         }
 
+        public static void ActualizarLlamada(Llamada llamada)
+        {
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                string consulta = @"UPDATE Llamadas SET descripcionOperador = @descripcion, duracion = @duracion WHERE (idLlamada=@id)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@descripcion", llamada.DescripcionOperador);
+                cmd.Parameters.AddWithValue("@duracion", llamada.Duracion);
+                cmd.Parameters.AddWithValue("@id", llamada.IdLlamada);
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                throw;
+            }
+
+            finally
+            {
+                cn.Close();
+            }
+
+        }
+
+        public static void AgregarCambiosEstado(CambioEstado cambioEstado, int idLlamada)
+        {
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                string consulta = @"INSERT INTO CambiosEstado (idLlamada,fechaHoraInicia, idEstado) VALUES (@idLlamada, @fechaHora, @estado)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@idLlamada", idLlamada);
+                cmd.Parameters.AddWithValue("@fechaHora", cambioEstado.FechaHoraInicio);
+                cmd.Parameters.AddWithValue("@estado", cambioEstado.Estado.Id);
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                throw;
+            }
+
+            finally
+            {
+                cn.Close();
+            }
+
+        }
 
 
     }

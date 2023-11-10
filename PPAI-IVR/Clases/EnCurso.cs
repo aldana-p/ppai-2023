@@ -10,35 +10,78 @@ namespace PPAI_IVR.Clases
 {
     public class EnCurso : Estado
     {
-        public EnCurso(string nombre) : base(nombre)
+        public EnCurso(string nombre, int idEstado) : base(nombre, idEstado)
         {
+            
         }
 
-        public override void contestarLlamada(DateTime fechaHoraActual, Llamada llamada)
+        public override void cancelarLlamada(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
+        {
+            Estado cancelada= crearProximoEstado(fechaHoraActual, llamada, confirmacion);
+            crearNuevoCambioEstado(fechaHoraActual, cancelada, llamada, confirmacion);
+            llamada.setEstadoActual(cancelada);
+
+        }
+
+        public override void contestarLlamada(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
         {
             throw new NotImplementedException();
         }
 
-        public override void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado, Llamada llamada)
+        public override void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado, Llamada llamada, bool confirmacion)
         {
-            CambioEstado finalizadaCambio = new CambioEstado(fechaHoraActual, estado);
-            llamada.agregarCambioEstado(finalizadaCambio);
+            if (confirmacion)
+            {
+                CambioEstado finalizadaCambio = new CambioEstado(fechaHoraActual, estado);
+                llamada.agregarCambioEstado(finalizadaCambio);
+            }
+            else
+            {
+                CambioEstado canceladaCambio = new CambioEstado(fechaHoraActual, estado);
+                llamada.agregarCambioEstado(canceladaCambio);
+            }
+            
 
         }
 
-        public override Estado crearProximoEstado(DateTime fechaHoraActual, Llamada llamada)
+        public override Estado crearProximoEstado(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
         {
-            Estado finalizada = new Finalizada("Finalizada");
-            //crearNuevoCambioEstado(fechaHoraActual, finalizada, llamada);
-            return finalizada;
+            if (confirmacion)
+            {
+                Estado finalizada = new Finalizada("Finalizada", 3);
+                return finalizada;
+            }
+            else
+            {
+                Estado cancelada = new Cancelada("Cancelada", 4);
+                return cancelada;
+            }
+            
+
+
+            /*       TAMBIÉN ROMPE EL PATRÓN
+            if (nombreEstado == "Finalizada") {
+                Estado finalizada = new Finalizada("Finalizada");
+                return finalizada;
+            }
+            if (nombreEstado == "Cancelada") {
+                Estado cancelada = new Cancelada("Cancelada");
+                return cancelada;
+            }
+         
+             
+            */
+
+
         }
 
-        public override void finalizarLlamada(DateTime fechaHoraActual, Llamada llamada, String rtaOperador)
+        public override void finalizarLlamada(DateTime fechaHoraActual, Llamada llamada, String rtaOperador,bool confirmacion)
         {
-            Estado finalizada = crearProximoEstado(fechaHoraActual, llamada);
-            crearNuevoCambioEstado(fechaHoraActual, finalizada, llamada);
+            Estado finalizada = crearProximoEstado(fechaHoraActual, llamada, confirmacion);
+            crearNuevoCambioEstado(fechaHoraActual, finalizada, llamada, confirmacion);
             llamada.setDescripcionOperador(rtaOperador);
-            llamada.calcularDuracion();   //Al final lo dejé en llamada porque sino tengo que cambiar a public el atributo de cambios de estados!
+            TimeSpan duracion = calcularDuracion(llamada);
+            llamada.setDuracion(duracion);
             llamada.setEstadoActual(finalizada);
 
 
@@ -51,6 +94,23 @@ namespace PPAI_IVR.Clases
             Console.WriteLine(" Descripción operador: " + llamada.DescripcionOperador +
                                "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
                                               "\n Cantidad de cambios de estados: " + lista.Count.ToString());
+        }
+
+        public TimeSpan calcularDuracion(Llamada llamada)
+        {
+            DateTime inicio = new DateTime();
+            DateTime fin = new DateTime();
+
+
+            //REVISAR POR QUË TIENE LA MISMA HORA
+            for (int i = 0; i < llamada.CambioEstado.Count; i++)
+            {
+                if (llamada.CambioEstado.ElementAt(i).Estado.Nombre == "EnCurso") { inicio = llamada.CambioEstado.ElementAt(i).FechaHoraInicio; }
+                if (llamada.CambioEstado.ElementAt(i).Estado.Nombre == "Finalizada") { fin = llamada.CambioEstado.ElementAt(i).FechaHoraInicio; }
+            }
+            TimeSpan duracion = fin.Subtract(inicio);
+
+            return duracion;
         }
 
 

@@ -214,13 +214,19 @@ namespace PPAI_IVR
             gestor.tomarConfirmacion(confirmacion);
         }
 
+        private void btnColgarLlamada_Click(object sender, EventArgs e)
+        {
+            bool confirmacion = false;
+            gestor.cancelarLlamada(confirmacion);
+            DialogResult result = MessageBox.Show("La llamada fue colgada por el cliente", "AVISO", MessageBoxButtons.OK);
+            this.Close();
+        }
+
 
         /*
         private void button1_Click(object sender, EventArgs e)
         {
-            gestor.buscarEstadoCancelada();
-            DialogResult result = MessageBox.Show("La llamada fue colgada por el cliente", "AVISO", MessageBoxButtons.OK);
-            this.Close();
+            
         }*/
     }
 }

@@ -451,6 +451,7 @@
             this.btnColgarLlamada.TabIndex = 5;
             this.btnColgarLlamada.Text = "Cancelar Llamada";
             this.btnColgarLlamada.UseVisualStyleBackColor = true;
+            this.btnColgarLlamada.Click += new System.EventHandler(this.btnColgarLlamada_Click);
             // 
             // PantallaRegistrarRtaOperador
             // 

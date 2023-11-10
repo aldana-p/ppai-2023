@@ -63,7 +63,6 @@
     <Compile Include="Clases\SubopcionLlamada.cs" />
     <Compile Include="Clases\Validacion.cs" />
     <Compile Include="Datos\AccesoBD.cs" />
-    <Compile Include="Datos\DatosCreados.cs" />
     <Compile Include="Interfaz\PantallaRegistrarRtaOperador.cs">
       <SubType>Form</SubType>
     </Compile>

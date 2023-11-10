@@ -6,7 +6,35 @@ using System.Threading.Tasks;
 
 namespace PPAI_IVR.Clases
 {
-    internal class Cancelada
+    public class Cancelada : Estado
     {
+        public Cancelada(string nombre, int idEstado) : base(nombre, idEstado)
+        {
+        }
+
+        public override void cancelarLlamada(DateTime fechHoraActual, Llamada llamada, bool confirmacion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void contestarLlamada(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado, Llamada llamada, bool confirmacion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Estado crearProximoEstado(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void finalizarLlamada(DateTime fechaHoraActual, Llamada llamada, string rtaOperador, bool confirmacion)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

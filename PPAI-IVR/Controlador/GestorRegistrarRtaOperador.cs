@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PPAI_IVR.Datos;
 
 namespace PPAI_IVR.Clases
 {
@@ -139,7 +140,8 @@ namespace PPAI_IVR.Clases
             if (llamarCU28RegistrarAccion())
             {
                 //patron
-                llamada.finalizarLlamada(fechaHoraActual, respuestaOperador);
+                DateTime fechaHora = obtenerFechaHoraActual();
+                llamada.finalizarLlamada(fechaHora, respuestaOperador, confirmacion);
                 finCU();
 
             };
@@ -152,8 +154,17 @@ namespace PPAI_IVR.Clases
 
         }
 
+        
+        // patron
+        public void cancelarLlamada(bool confirmacion)
+        {
+            fechaHoraActual = obtenerFechaHoraActual();
+            llamada.cancelarLlamada(fechaHoraActual, confirmacion);
+        }      
 
-      
+        
+
+
 
         /*    VER CANCELACION
         public void buscarEstadoCancelada()
@@ -185,6 +196,19 @@ namespace PPAI_IVR.Clases
 
         public void finCU()
         {
+            /*
+
+            AccesoBD.ActualizarLlamada(llamada);
+
+            for (int i=0; i < llamada.CambioEstado.Count; i++)
+            {
+                if (llamada.CambioEstado[i].Estado.Nombre != "Iniciada")
+                {
+                    AccesoBD.AgregarCambiosEstado(llamada.CambioEstado, llamada.IdLlamada);
+                }                
+            }
+            
+            */
             pantalla.Close();
         }
 
