@@ -216,17 +216,10 @@ namespace PPAI_IVR
 
         private void btnColgarLlamada_Click(object sender, EventArgs e)
         {
-            bool confirmacion = false;
-            gestor.cancelarLlamada(confirmacion);
+            gestor.cancelarLlamada(false);
             DialogResult result = MessageBox.Show("La llamada fue colgada por el cliente", "AVISO", MessageBoxButtons.OK);
             this.Close();
         }
 
-
-        /*
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }*/
     }
 }

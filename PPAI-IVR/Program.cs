@@ -35,18 +35,17 @@ namespace PPAI_IVR
                     CambioEstado iniciadaCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
                     
                     ce.Add(iniciadaCE);
-                }
-                // corregir conversión para el resto de estados
+                }                
                 if (cambiosEstado.Rows[i]["nombre"].ToString() == "EnCurso")
                 {
                     Estado estado = new EnCurso("EnCurso", 2);
-                    CambioEstado enCursoCE = new CambioEstado(DateTime.ParseExact("cambiosEstado.Rows[i][\"fechaHoraInicia\"].ToString()", "dd/MM/yy hh:F", null), estado);
+                    CambioEstado enCursoCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
                     ce.Add(enCursoCE);
                 }
                 if (cambiosEstado.Rows[i]["nombre"].ToString() == "Finalizada")
                 {
                     Estado estado = new Finalizada("Finalizada", 3);
-                    CambioEstado finalizadaCE = new CambioEstado(DateTime.ParseExact("cambiosEstado.Rows[i][\"fechaHoraInicia\"].ToString()", "dd/MM/yy hh:F", null), estado);
+                    CambioEstado finalizadaCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
                     ce.Add(finalizadaCE);
                 }
 

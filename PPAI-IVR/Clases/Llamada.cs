@@ -91,12 +91,6 @@ namespace PPAI_IVR.Clases
             duracion = duracionLlamada;
         }
 
-        /*    CAMBIAR LA CANCELACION
-        public void cancelarLlamada (DateTime fechaHoraActual, Estado estado)
-        {
-            crearNuevoCambioEstado(fechaHoraActual, estado);
-        }
-        */
         public void cancelarLlamada(DateTime fechaHoraActual, bool conf)
         {
             estadoActual.cancelarLlamada(fechaHoraActual, this, conf);

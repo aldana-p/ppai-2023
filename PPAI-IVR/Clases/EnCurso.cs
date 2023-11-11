@@ -56,22 +56,7 @@ namespace PPAI_IVR.Clases
                 Estado cancelada = new Cancelada("Cancelada", 4);
                 return cancelada;
             }
-            
-
-
-            /*       TAMBIÉN ROMPE EL PATRÓN
-            if (nombreEstado == "Finalizada") {
-                Estado finalizada = new Finalizada("Finalizada");
-                return finalizada;
-            }
-            if (nombreEstado == "Cancelada") {
-                Estado cancelada = new Cancelada("Cancelada");
-                return cancelada;
-            }
-         
-             
-            */
-
+           
 
         }
 

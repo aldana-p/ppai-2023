@@ -304,6 +304,7 @@ namespace PPAI_IVR.Datos
 
                 cn.Open();
                 cmd.Connection = cn;
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -337,6 +338,7 @@ namespace PPAI_IVR.Datos
 
                 cn.Open();
                 cmd.Connection = cn;
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)

@@ -142,6 +142,20 @@ namespace PPAI_IVR.Clases
                 //patron
                 DateTime fechaHora = obtenerFechaHoraActual();
                 llamada.finalizarLlamada(fechaHora, respuestaOperador, confirmacion);
+
+
+                //actualización en la bd
+                AccesoBD.ActualizarLlamada(llamada);
+
+                for (int i = 0; i < llamada.CambioEstado.Count; i++)
+                {
+                    if (llamada.CambioEstado[i].Estado.Nombre != "Iniciada")
+                    {
+                        AccesoBD.AgregarCambiosEstado(llamada.CambioEstado[i], llamada.IdLlamada);
+                    }
+                }
+
+
                 finCU();
 
             };
@@ -160,55 +174,20 @@ namespace PPAI_IVR.Clases
         {
             fechaHoraActual = obtenerFechaHoraActual();
             llamada.cancelarLlamada(fechaHoraActual, confirmacion);
-        }      
 
-        
-
-
-
-        /*    VER CANCELACION
-        public void buscarEstadoCancelada()
-        {
-            foreach (Estado estado in estados)
-            {
-                bool res = estado.esCancelado();
-
-                if (res)
-                {
-                    estadoCancelado = estado;
-                    break;
-                }
-            }
-
-            fechaHoraActual = obtenerFechaHoraActual();
-            actualizarEstadoLlamadaACancelado(estadoCancelado);
-        }
-
-        public void actualizarEstadoLlamadaACancelado(Estado nuevoEstado)
-        {
-            llamada.cancelarLlamada(fechaHoraActual, nuevoEstado);
-            List<CambioEstado> lista = llamada.CambioEstado;
-            Console.WriteLine(" Estado actual de la Llamada: " + lista[2].Estado.Nombre);
-        }
-
-
-        */
-
-        public void finCU()
-        {
-            /*
-
-            AccesoBD.ActualizarLlamada(llamada);
-
-            for (int i=0; i < llamada.CambioEstado.Count; i++)
+            //actualización en la bd
+            for (int i = 0; i < llamada.CambioEstado.Count; i++)
             {
                 if (llamada.CambioEstado[i].Estado.Nombre != "Iniciada")
                 {
-                    AccesoBD.AgregarCambiosEstado(llamada.CambioEstado, llamada.IdLlamada);
-                }                
+                    AccesoBD.AgregarCambiosEstado(llamada.CambioEstado[i], llamada.IdLlamada);
+                }
             }
-            
-            */
+        }      
+
+        
+        public void finCU()
+        {
             pantalla.Close();
         }
 
