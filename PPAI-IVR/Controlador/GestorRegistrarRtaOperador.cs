@@ -17,10 +17,6 @@ namespace PPAI_IVR.Clases
         private CategoriaLlamada categoria { get; set; }
         private SubopcionLlamada subopcion { get; set; }
         private Cliente cliente { get; set; }
-        private Estado estadoEnCurso { get; set; }
-        private Estado estadoFinalizada { get; set; }
-        private Estado estadoCancelado { get; set; }
-        //private List<Estado> estados { get; set; }
         private DateTime fechaHoraActual { get; set; }
         private PantallaRegistrarRtaOperador pantalla { get; set; }
         private List<Accion> acciones { get; set; }
@@ -28,8 +24,6 @@ namespace PPAI_IVR.Clases
         private string accionSeleccionada { get; set; }
 
         public PantallaRegistrarRtaOperador Pantalla { get => pantalla; set => pantalla = value; }
-
-
 
         public GestorRegistrarRtaOperador(Llamada llamada, CategoriaLlamada categoria, List<Accion> acciones)
         {
@@ -53,7 +47,7 @@ namespace PPAI_IVR.Clases
             
             if (subopcion.Nombre == "Comunicarse con atención al cliente")
             {
-                actualizarEstadoLlamadaAEnCurso(llamada);  //patrón
+                actualizarEstadoLlamadaAEnCurso(llamada);  
             }
         }
 
@@ -63,7 +57,6 @@ namespace PPAI_IVR.Clases
 
         }
 
-        //patrón
         public void actualizarEstadoLlamadaAEnCurso(Llamada llamada) 
         {
             fechaHoraActual = obtenerFechaHoraActual();
@@ -139,12 +132,9 @@ namespace PPAI_IVR.Clases
         {
             if (llamarCU28RegistrarAccion())
             {
-                //patron
                 DateTime fechaHora = obtenerFechaHoraActual();
                 llamada.finalizarLlamada(fechaHora, respuestaOperador, confirmacion);
 
-
-                //actualización en la bd
                 AccesoBD.ActualizarLlamada(llamada);
 
                 for (int i = 0; i < llamada.CambioEstado.Count; i++)
@@ -154,7 +144,6 @@ namespace PPAI_IVR.Clases
                         AccesoBD.AgregarCambiosEstado(llamada.CambioEstado[i], llamada.IdLlamada);
                     }
                 }
-
 
                 finCU();
 

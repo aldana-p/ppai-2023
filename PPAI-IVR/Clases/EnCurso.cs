@@ -39,9 +39,7 @@ namespace PPAI_IVR.Clases
             {
                 CambioEstado canceladaCambio = new CambioEstado(fechaHoraActual, estado);
                 llamada.agregarCambioEstado(canceladaCambio);
-            }
-            
-
+            }         
         }
 
         public override Estado crearProximoEstado(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
@@ -56,8 +54,6 @@ namespace PPAI_IVR.Clases
                 Estado cancelada = new Cancelada("Cancelada", 4);
                 return cancelada;
             }
-           
-
         }
 
         public override void finalizarLlamada(DateTime fechaHoraActual, Llamada llamada, String rtaOperador,bool confirmacion)
@@ -77,8 +73,8 @@ namespace PPAI_IVR.Clases
                 "\n Cantidad de cambios de estados: " + lista.Count.ToString(), "Datos de la llamada finalizada");
 
             Console.WriteLine(" Descripción operador: " + llamada.DescripcionOperador +
-                               "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
-                                              "\n Cantidad de cambios de estados: " + lista.Count.ToString());
+                              "\n Duración de la llamada: " + llamada.Duracion.ToString("hh':'mm':'ss") +
+                              "\n Cantidad de cambios de estados: " + lista.Count.ToString());
         }
 
         public TimeSpan calcularDuracion(Llamada llamada)
@@ -86,8 +82,6 @@ namespace PPAI_IVR.Clases
             DateTime inicio = new DateTime();
             DateTime fin = new DateTime();
 
-
-            //REVISAR POR QUË TIENE LA MISMA HORA
             for (int i = 0; i < llamada.CambioEstado.Count; i++)
             {
                 if (llamada.CambioEstado.ElementAt(i).Estado.Nombre == "EnCurso") { inicio = llamada.CambioEstado.ElementAt(i).FechaHoraInicio; }

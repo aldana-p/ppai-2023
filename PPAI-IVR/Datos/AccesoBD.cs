@@ -20,7 +20,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT idLlamada, descripcionOperador, duracion, idAccion, opcionSeleccionada, subopcionSeleccionada, nombreCompleto, dniCliente, nroCategoria 
                 FROM Llamadas JOIN Clientes C ON (C.dni=Llamadas.dniCliente) JOIN Opciones O ON (Llamadas.opcionSeleccionada=O.nroOrdenOpcion) 
@@ -59,7 +58,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT datoAValidar FROM Llamadas JOIN Clientes C ON (C.dni=Llamadas.dniCliente) JOIN
                 Informaciones I ON (I.dniCliente=C.dni) WHERE (Llamadas.dniCliente=@dni)";
@@ -99,7 +97,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT fechaHoraInicia, nombre FROM Llamadas JOIN CambiosEstado CE ON (Llamadas.idLlamada=CE.idLlamada)
                 JOIN Estados E ON (CE.idEstado=E.idEstado) WHERE (CE.idLlamada=@id)";
@@ -139,7 +136,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT  nombre, nombreSubopcion from Subopciones S JOIN Validaciones V ON (S.nroOrdenSubopcion=V.nroSubopcion)
                 WHERE (S.nroOrdenSubopcion=@subopcion)";
@@ -178,7 +174,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT nombreOpcion, nombreSubopcion, nroOrdenSubopcion from Subopciones S JOIN Opciones O ON (S.nroOpcion=O.nroOrdenOpcion)
                 WHERE (O.nroOrdenOpcion=@opcion)";
@@ -216,7 +211,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT nombreCategoria, nombreOpcion, nroOrdenOpcion from Opciones O JOIN Categorias C ON (C.nroOrdenCategoria=O.nroCategoria)
                 WHERE (C.nroOrdenCategoria=@nroCat)";
@@ -256,7 +250,6 @@ namespace PPAI_IVR.Datos
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT descripcion FROM Acciones";
                 cmd.Parameters.Clear();
@@ -286,13 +279,13 @@ namespace PPAI_IVR.Datos
 
         }
 
+        //Método que actualiza los datos de la llamada en la BD
         public static void ActualizarLlamada(Llamada llamada)
         {
             string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"UPDATE Llamadas SET descripcionOperador = @descripcion, duracion = @duracion WHERE (idLlamada=@id)";
                 cmd.Parameters.Clear();
@@ -320,13 +313,13 @@ namespace PPAI_IVR.Datos
 
         }
 
+        //Método que inserta en la BD los nuevos cambios de estados que tuvo la llamada
         public static void AgregarCambiosEstado(CambioEstado cambioEstado, int idLlamada)
         {
             string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
-
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"INSERT INTO CambiosEstado (idLlamada,fechaHoraInicia, idEstado) VALUES (@idLlamada, @fechaHora, @estado)";
                 cmd.Parameters.Clear();

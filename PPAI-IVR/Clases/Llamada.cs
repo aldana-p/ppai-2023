@@ -45,52 +45,48 @@ namespace PPAI_IVR.Clases
             this.estadoActual = cambioEstado.ElementAt(0).Estado;
         }
 
-
-        //patron
+        // Método que delega al estado actual la creación del próximo estado y cambio de estado.
         public void contestarLlamada(DateTime fechaHoraActual)
         {
             estadoActual.contestarLlamada(fechaHoraActual, this, true);
         }
 
-
-        //patron
         public void setEstadoActual(Estado estado)
         {
             estadoActual = estado;
         }
+
         public void agregarCambioEstado(CambioEstado cambio)
         {
             cambioEstado.Add(cambio);
         }
+
         public void finalizarLlamada(DateTime fechaHoraActual, String respuestaOperador, bool conf)
         {
             estadoActual.finalizarLlamada(fechaHoraActual, this, respuestaOperador, conf);
         }
 
-
         public string buscarDatosLlamada()
         {
             return this.cliente.getNombre();
         }
-
-        
+                
         public bool validarRespuesta(string respuesta)
         {
             return cliente.validarRespuestaCliente(respuesta);
         }
         
-
-        //patron
         public void setDescripcionOperador(string descripcion)
         {
             descripcionOperador = descripcion;
         }
-        //patron
+        
         public void setDuracion(TimeSpan duracionLlamada)
         {
             duracion = duracionLlamada;
         }
 
+        // Método que delega al estado actual la creación del nuevo estado y cambio de estado
         public void cancelarLlamada(DateTime fechaHoraActual, bool conf)
         {
             estadoActual.cancelarLlamada(fechaHoraActual, this, conf);

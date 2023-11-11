@@ -21,13 +21,14 @@ namespace PPAI_IVR.Clases
         {
             Estado enCurso = crearProximoEstado(fechaHoraActual, llamada, confirmacion);
             crearNuevoCambioEstado(fechaHoraActual, enCurso, llamada,confirmacion);
+            llamada.setEstadoActual(enCurso);
         }
 
         public override void crearNuevoCambioEstado(DateTime fechaHoraActual, Estado estado, Llamada llamada, bool confirmacion)
         {
             CambioEstado cambioEnCurso = new CambioEstado(fechaHoraActual, estado);
             llamada.agregarCambioEstado(cambioEnCurso);
-            llamada.setEstadoActual(estado);
+            
         }
 
         public override Estado crearProximoEstado(DateTime fechaHoraActual, Llamada llamada, bool confirmacion)
