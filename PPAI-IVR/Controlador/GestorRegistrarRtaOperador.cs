@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PPAI_IVR.Datos;
+using PPAI_IVR.Interfaz;
 
 namespace PPAI_IVR.Clases
 {
@@ -22,7 +23,6 @@ namespace PPAI_IVR.Clases
         private List<Accion> acciones { get; set; }
         private string respuestaOperador { get; set; }
         private string accionSeleccionada { get; set; }
-
         public PantallaRegistrarRtaOperador Pantalla { get => pantalla; set => pantalla = value; }
 
         public GestorRegistrarRtaOperador(Llamada llamada, CategoriaLlamada categoria, List<Accion> acciones)
@@ -33,7 +33,6 @@ namespace PPAI_IVR.Clases
             this.subopcion = llamada.SubopcionSeleccionada;
             this.cliente = llamada.Cliente;
             this.pantalla = new PantallaRegistrarRtaOperador(this);
-            //this.estados = estados;
             this.acciones = acciones;
         }
 
@@ -125,7 +124,6 @@ namespace PPAI_IVR.Clases
         {
             this.accionSeleccionada = accion;  // El caso de uso 28 se encarga de registrarla (asignarla a la llamada)
             pantalla.solicitarConfirmacion();
-
         }
 
         public void tomarConfirmacion(bool confirmacion)

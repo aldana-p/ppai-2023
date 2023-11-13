@@ -21,8 +21,8 @@ namespace PPAI_IVR
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
-            DataTable llamadas = AccesoBD.ObtenerLlamadas();       //Deberíamos buscarla por id para asegurarnos de sólo obtener 1????
+            // Si queremos probar varias veces vamos a tener que cambiar el nro acá.
+            DataTable llamadas = AccesoBD.ObtenerLlamadas(3);      
 
             
             DataTable cambiosEstado = AccesoBD.ObtenerCambiosEstados(int.Parse(llamadas.Rows[0]["idLlamada"].ToString()));
@@ -48,8 +48,13 @@ namespace PPAI_IVR
                     CambioEstado finalizadaCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
                     ce.Add(finalizadaCE);
                 }
+                if (cambiosEstado.Rows[i]["nombre"].ToString() == "Cancelada")
+                {
+                    Estado estado = new Cancelada("Cancelada", 4);
+                    CambioEstado canceladaCE = new CambioEstado(Convert.ToDateTime(cambiosEstado.Rows[i]["fechaHoraInicia"].ToString()), estado);
+                    ce.Add(canceladaCE);
+                }
 
-                //FALTA CANCELADA
             }
 
 
@@ -113,7 +118,7 @@ namespace PPAI_IVR
             gestor.registrarRespuestaOperador();
 
             Application.Run(gestor.Pantalla);
-
+            
         }
     } 
 }

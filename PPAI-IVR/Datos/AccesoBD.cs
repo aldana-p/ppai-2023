@@ -13,8 +13,8 @@ namespace PPAI_IVR.Datos
     public class AccesoBD
     {
 
-        // ver si es mejor obtener una sóla con un id o todas ??
-        public static DataTable ObtenerLlamadas()
+        // Método que recupera un llamada de la BD a través del id
+        public static DataTable ObtenerLlamadas(int idLlamada)
         {
             string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
             SqlConnection cn = new SqlConnection(cadenaConexion);
@@ -23,8 +23,9 @@ namespace PPAI_IVR.Datos
                 SqlCommand cmd = new SqlCommand();
                 string consulta = @"SELECT idLlamada, descripcionOperador, duracion, idAccion, opcionSeleccionada, subopcionSeleccionada, nombreCompleto, dniCliente, nroCategoria 
                 FROM Llamadas JOIN Clientes C ON (C.dni=Llamadas.dniCliente) JOIN Opciones O ON (Llamadas.opcionSeleccionada=O.nroOrdenOpcion) 
-                JOIN Subopciones S ON (Llamadas.subopcionSeleccionada=S.nroOrdenSubopcion)";
+                JOIN Subopciones S ON (Llamadas.subopcionSeleccionada=S.nroOrdenSubopcion) WHERE Llamadas.idLlamada=@id";
                 cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", idLlamada);
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = consulta;
 

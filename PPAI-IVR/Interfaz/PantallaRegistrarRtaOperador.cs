@@ -5,12 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PPAI_IVR
+namespace PPAI_IVR.Interfaz
 {
     public partial class PantallaRegistrarRtaOperador : Form
     {
@@ -19,41 +18,17 @@ namespace PPAI_IVR
         {
             this.gestor = gestor;
             InitializeComponent();
+          
         }
 
-        private void PantallaRegistrarRtaOperador_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void mostrarValidaciones_Click(object sender, EventArgs e)
-        {
-            gbValidaciones.Visible = true;
-        }
-
-        private void btnIngresarRta1_Click(object sender, EventArgs e)
-        {
-            lblRta1.Visible = true;
-            txtRtaValidacion1.Visible = true;
-        }
-        private void btnIngresarRta2_Click(object sender, EventArgs e)
-        {
-            lblRta2.Visible = true;
-            txtRtaValidacion2.Visible = true;
-        }
-
-        private void btnIngresarRta3_Click(object sender, EventArgs e)
-        {
-            lblRta3.Visible = true;
-            txtRtaValidacion3.Visible = true;
-        }
-
+        
         public void mostrarDatosLlamada(string[] categoriaOpcionSubopcion, string nombreCliente, Llamada selecLlamada)
         {
             txtNombreCliente.Text = nombreCliente;
+            txtCategoria.SelectedText = categoriaOpcionSubopcion[0];
+            txtOpcion.Text = categoriaOpcionSubopcion[1];
+            txtSubopcion.Text = categoriaOpcionSubopcion[2];
 
-            cmbCategoria.Text = categoriaOpcionSubopcion[0];
-            cmbOpcion.Text = categoriaOpcionSubopcion[1];
-            cmbSubopcion.Text = categoriaOpcionSubopcion[2];
 
             gbValidaciones.Visible = true;
 
@@ -131,7 +106,7 @@ namespace PPAI_IVR
 
             bool sinErrores = true;
 
-            for( int i = 0; i < res.Length; i++)
+            for (int i = 0; i < res.Length; i++)
             {
                 if (res[i] != null)
                 {
@@ -160,15 +135,15 @@ namespace PPAI_IVR
                         sinErrores = false;
                     }
                 }
-            } 
-            if(sinErrores)
+            }
+            if (sinErrores)
             {
                 List<string> acciones = gestor.buscarAcciones();
                 foreach (string accion in acciones)
                 {
-                      cmbAcciones.Items.Add(accion);
+                    cmbAcciones.Items.Add(accion);
                 }
-                    gbRespuestaOperador.Visible = true;
+                gbRespuestaOperador.Visible = true;
             }
         }
 
@@ -206,7 +181,7 @@ namespace PPAI_IVR
                 confirmacion = true;
                 confirmar(confirmacion);
             }
-            
+
         }
 
         public void confirmar(bool confirmacion)
@@ -221,5 +196,9 @@ namespace PPAI_IVR
             this.Close();
         }
 
+        private void btnCerrarApp_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
